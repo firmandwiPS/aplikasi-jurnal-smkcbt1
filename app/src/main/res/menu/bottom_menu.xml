@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Menu Beranda -->
+    <item
+        android:id="@+id/nav_dashboard"
+        android:icon="@drawable/ic_home"
+        android:title="Beranda" />
+
+    <!-- Menu Entri Jurnal -->
+    <item
+        android:id="@+id/nav_jurnal"
+        android:icon="@drawable/ic_journal"
+        android:title="Jurnal PKL" />
+
+
+    <!-- Menu Profil -->
+    <item
+        android:id="@+id/nav_profil"
+        android:icon="@drawable/ic_profile"
+        android:title="User Akun" />
+</menu>
