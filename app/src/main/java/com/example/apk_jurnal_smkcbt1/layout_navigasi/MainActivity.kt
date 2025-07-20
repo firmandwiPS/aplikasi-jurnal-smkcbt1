@@ -1,8 +1,9 @@
-package com.example.apk_jurnal_smkcbt1
+package com.example.apk_jurnal_smkcbt1.layout_navigasi
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.apk_jurnal_smkcbt1.R
 import com.example.apk_jurnal_smkcbt1.admin.AdminDashboardFragment
 import com.example.apk_jurnal_smkcbt1.admin.AdminJurnalFragment
 import com.example.apk_jurnal_smkcbt1.admin.AdminProfileFragment

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".layout_navigasi.MainActivity">
 
     <!-- Header at the top -->
     <include
@@ -36,7 +36,7 @@
         app:itemPaddingTop="6dp"
         app:itemPaddingBottom="6dp"
         app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_menu"
+        app:menu="@menu/bottom_menu_admin"
         app:itemIconTint="@drawable/bottom_nav_color_selector"
         app:itemTextColor="@drawable/bottom_nav_color_selector"
 />
