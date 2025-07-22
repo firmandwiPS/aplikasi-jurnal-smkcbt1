@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
-    <!-- Mengizinkan semua trafik HTTP (cleartext) -->
-    <base-config cleartextTrafficPermitted="true" />
+    <!-- Izinkan semua domain, IP, dan subdomain untuk akses HTTP -->
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
 </network-security-config>

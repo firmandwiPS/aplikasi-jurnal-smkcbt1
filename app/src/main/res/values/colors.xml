@@ -6,4 +6,8 @@
     <color name="gray">#9E9E9E</color>
     <color name="oren">#FF9800</color>
     <color name="text">#3F51B5</color>
+    <color name="primary">#2196F3</color>         <!-- Biru -->
+    <color name="secondary_text">#888888</color> <!-- Abu -->
+
+
 </resources>

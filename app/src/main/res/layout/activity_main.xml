@@ -5,40 +5,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".layout_navigasi.MainActivity">
 
-    <!-- Header at the top -->
+    <!-- Header -->
     <include
         layout="@layout/nav_header"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_gravity="top"
+        android:layout_gravity="top" />
 
-        />
-
-    <!-- Main Content -->
+    <!-- Fragment container -->
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="80dp"
-        android:layout_marginBottom="?attr/actionBarSize"/>
+        android:layout_marginBottom="?attr/actionBarSize"
+        android:background="@color/white" />
 
-    <!-- Enhanced Bottom Navigation -->
+    <!-- Invisible Anchor for PopupMenu -->
+    <ImageView
+        android:id="@+id/more_anchor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|top"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:visibility="invisible"
+        android:src="@drawable/ic_more"
+        android:contentDescription="Anchor for menu more" />
+
+    <!-- Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav_view"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="@color/white"
         android:elevation="8dp"
-        app:itemIconSize="26dp"
-        app:itemPaddingTop="6dp"
-        app:itemPaddingBottom="6dp"
-        app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_menu_admin"
-        app:itemIconTint="@drawable/bottom_nav_color_selector"
-        app:itemTextColor="@drawable/bottom_nav_color_selector"
-/>
+        app:labelVisibilityMode="labeled"
+        app:itemIconSize="24dp"
+        app:itemIconTint="@color/bottom_nav_color"
+        app:itemTextColor="@color/bottom_nav_color"
+        app:itemTextAppearanceActive="@style/BottomNavTextActive"
+        app:itemTextAppearanceInactive="@style/BottomNavTextInactive" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

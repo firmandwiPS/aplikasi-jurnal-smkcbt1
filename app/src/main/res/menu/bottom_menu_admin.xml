@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Menu Beranda -->
     <item
         android:id="@+id/nav_dashboard"
-        android:icon="@drawable/ic_home"
-        android:title="Beranda" />
+        android:icon="@drawable/ic_dashboard"
+        android:title="Dashboard" />
 
-    <!-- Menu Entri Jurnal -->
     <item
         android:id="@+id/nav_jurnal"
         android:icon="@drawable/ic_journal"
         android:title="Jurnal PKL" />
 
-
-    <!-- Menu Profil -->
     <item
-        android:id="@+id/nav_profil"
-        android:icon="@drawable/ic_profile"
-        android:title="User Akun" />
+        android:id="@+id/nav_absensi"
+        android:icon="@drawable/ic_attendance"
+        android:title="Absensi" />
+
+    <item
+        android:id="@+id/nav_siswa"
+        android:icon="@drawable/ic_students"
+        android:title="Siswa" />
+
+    <item
+        android:id="@+id/nav_more"
+        android:icon="@drawable/ic_more"
+        android:title="Lainnya" />
 </menu>
