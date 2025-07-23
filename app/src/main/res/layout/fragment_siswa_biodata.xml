@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5">
+    android:background="#FFF3E0"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Header Biru -->
+        <!-- Header Orange -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="240dp"
-            android:background="#3F51B5">
+            android:background="#FF9800">
 
             <!-- Foto Profil -->
             <ImageView
@@ -24,10 +26,10 @@
                 android:layout_marginTop="32dp"
                 android:background="@drawable/bg_circle_white"
                 android:scaleType="centerCrop"
-                android:elevation="4dp" />
+                android:elevation="8dp" />
 
             <!-- Nama -->
-            <TextView
+            <EditText
                 android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -36,11 +38,16 @@
                 android:layout_centerHorizontal="true"
                 android:text="Nama"
                 android:textSize="18sp"
-                android:textColor="@android:color/white"
-                android:textStyle="bold" />
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:background="@null"
+                android:inputType="textPersonName"
+                android:cursorVisible="false"
+                android:focusable="true"
+                android:focusableInTouchMode="true" />
 
             <!-- Jurusan -->
-            <TextView
+            <EditText
                 android:id="@+id/tvRole"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -48,146 +55,238 @@
                 android:layout_centerHorizontal="true"
                 android:text="Jurusan"
                 android:textSize="14sp"
-                android:textColor="@android:color/white" />
+                android:textColor="@color/black"
+                android:background="@null"
+                android:inputType="text"
+                android:cursorVisible="false"
+                android:focusable="true"
+                android:focusableInTouchMode="true" />
         </RelativeLayout>
 
-        <!-- Kontak & Info PKL -->
+        <!-- Konten Utama -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp"
-            android:background="@android:color/white">
+            android:padding="16dp">
 
-            <!-- NIS -->
-            <TextView
+            <!-- Card Informasi Pribadi -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvPersonalInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="NIS"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/tvNis"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="-"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="8dp">
 
-            <!-- Kelas -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Kelas"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/tvKelas"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="-"
-                android:layout_marginBottom="8dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-            <!-- Tempat dan Tanggal Lahir -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Tempat, Tanggal Lahir"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/tvTTL"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="-"
-                android:layout_marginBottom="8dp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Informasi Pribadi"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#FF9800"
+                        android:layout_marginBottom="8dp"/>
 
-            <!-- Alamat Rumah -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Alamat Rumah"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/tvAlamat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="-"
-                android:layout_marginBottom="8dp" />
+                    <!-- NIS -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="NIS"
+                        android:textStyle="bold" />
+                    <EditText
+                        android:id="@+id/tvNis"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:layout_marginBottom="8dp"
+                        android:inputType="number" />
 
-            <!-- Nomor HP -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="No HP"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/tvNoHp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="-"
-                android:layout_marginBottom="8dp" />
+                    <!-- Kelas -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Kelas"
+                        android:textStyle="bold" />
+                    <EditText
+                        android:id="@+id/tvKelas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:layout_marginBottom="8dp"
+                        android:inputType="text" />
 
-            <!-- Tempat PKL -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Tempat PKL"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/tvTempatPkl"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="-"
-                android:layout_marginBottom="8dp" />
+                    <!-- Tempat dan Tanggal Lahir -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tempat, Tanggal Lahir"
+                        android:textStyle="bold" />
+                    <EditText
+                        android:id="@+id/tvTTL"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:layout_marginBottom="8dp"
+                        android:inputType="text" />
 
-            <!-- Pembimbing -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Pembimbing"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/tvPembimbing"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="-"
-                android:layout_marginBottom="8dp" />
+                    <!-- Alamat Rumah -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Alamat Rumah"
+                        android:textStyle="bold" />
+                    <EditText
+                        android:id="@+id/tvAlamat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:layout_marginBottom="8dp"
+                        android:inputType="textMultiLine"
+                        android:lines="3" />
 
-            <!-- Tanggal PKL -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Waktu PKL"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/tvWaktuPkl"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="-"
-                android:layout_marginBottom="8dp" />
+                    <!-- Nomor HP -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="No HP"
+                        android:textStyle="bold" />
+                    <EditText
+                        android:id="@+id/tvNoHp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:layout_marginBottom="8dp"
+                        android:inputType="phone" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-            <!-- Status PKL -->
-            <TextView
+            <!-- Card Informasi PKL -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvPklInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Status PKL"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/tvStatus"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="-"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="8dp">
 
-            <!-- Catatan -->
-            <TextView
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Informasi PKL"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#FF9800"
+                        android:layout_marginBottom="8dp"/>
+
+                    <!-- Tempat PKL -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tempat PKL"
+                        android:textStyle="bold" />
+                    <EditText
+                        android:id="@+id/tvTempatPkl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:layout_marginBottom="8dp"
+                        android:inputType="text" />
+
+                    <!-- Pembimbing -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Pembimbing"
+                        android:textStyle="bold" />
+                    <EditText
+                        android:id="@+id/tvPembimbing"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:layout_marginBottom="8dp"
+                        android:inputType="text" />
+
+                    <!-- Tanggal PKL -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Waktu PKL"
+                        android:textStyle="bold" />
+                    <EditText
+                        android:id="@+id/tvWaktuPkl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:layout_marginBottom="8dp"
+                        android:inputType="datetime" />
+
+                    <!-- Status PKL -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Status PKL"
+                        android:textStyle="bold" />
+                    <EditText
+                        android:id="@+id/tvStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:layout_marginBottom="8dp"
+                        android:inputType="text" />
+
+                    <!-- Catatan -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Catatan PKL"
+                        android:textStyle="bold" />
+                    <EditText
+                        android:id="@+id/tvCatatan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:layout_marginBottom="8dp"
+                        android:inputType="textMultiLine"
+                        android:lines="3" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Tombol Aksi -->
+            <Button
+                android:id="@+id/btnChangePhoto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Catatan PKL"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/tvCatatan"
+                android:layout_marginBottom="8dp"
+                android:text="GANTI FOTO PROFIL"
+                android:background="#757575"
+                android:textColor="@android:color/white"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btnSave"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="-"
-                android:layout_marginBottom="8dp" />
+                android:text="EDIT BIODATA"
+                android:background="#FF9800"
+                android:textColor="@android:color/white" />
+
+
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
     </LinearLayout>
 </ScrollView>
