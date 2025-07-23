@@ -55,9 +55,9 @@ class SiswaBiodataFragment : Fragment() {
     private var selectedImageUri: Uri? = null
     private var originalPhotoUrl: String = ""
 
-    private val BASE_URL = "http://192.168.1.105/backend-app-jurnalcbt1/biodata_siswa/biodata_user_siswa.php"
-    private val UPDATE_URL = "http://192.168.1.105/backend-app-jurnalcbt1/biodata_siswa/ubah_biodata_user_siswa.php"
-    private val UPLOAD_PHOTO_URL = "http://192.168.1.105/backend-app-jurnalcbt1/biodata_siswa/upload_foto_biodata_user_siswa.php"
+    private val BASE_URL = "http://192.168.1.105/backend-app-jurnalcbt1/siswa_user/biodata_siswa/biodata_user_siswa.php"
+    private val UPDATE_URL = "http://192.168.1.105/backend-app-jurnalcbt1/siswa_user/biodata_siswa/ubah_biodata_user_siswa.php"
+    private val UPLOAD_PHOTO_URL = "http://192.168.1.105/backend-app-jurnalcbt1/siswa_user/biodata_siswa/upload_foto_biodata_user_siswa.php"
 
     private val galleryLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {

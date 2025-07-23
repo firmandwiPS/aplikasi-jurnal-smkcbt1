@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_data_user -> {
-                    loadFragment(AdminUserFragment())
+                    loadFragment(AdminDataUserFragment())
                     true
                 }
                 R.id.nav_data_pembimbing -> {
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_data_perusahaan -> {
-                    loadFragment(AdminPerusahaanFragment())
+                    loadFragment(AdminDataPerusahaanFragment())
                     true
                 }
                 else -> false
