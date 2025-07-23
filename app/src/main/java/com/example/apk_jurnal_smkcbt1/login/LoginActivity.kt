@@ -43,7 +43,7 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
-        val url = "http://192.168.1.4/backend-app-jurnalcbt1/login/login.php"
+        val url = "http://192.168.1.105/backend-app-jurnalcbt1/login/login.php"
 
         val request = object : StringRequest(
             Request.Method.POST, url,

@@ -7,22 +7,24 @@
         android:title="Dashboard" />
 
     <item
-        android:id="@+id/nav_jurnal"
-        android:icon="@drawable/ic_journal"
-        android:title="Jurnal PKL" />
-
-    <item
-        android:id="@+id/nav_absensi"
-        android:icon="@drawable/ic_attendance"
-        android:title="Absensi" />
-
-    <item
-        android:id="@+id/nav_siswa"
+        android:id="@+id/nav_data_siswa"
         android:icon="@drawable/ic_students"
-        android:title="Siswa" />
+        android:title="Data Siswa" />
 
     <item
-        android:id="@+id/nav_more"
-        android:icon="@drawable/ic_more"
-        android:title="Lainnya" />
+        android:id="@+id/nav_data_user"
+        android:icon="@drawable/ic_user"
+        android:title="Data User" />
+
+    <item
+        android:id="@+id/nav_data_pembimbing"
+        android:icon="@drawable/ic_pembimbing"
+        android:title="Data Pembimbing" />
+
+
+    <item
+        android:id="@+id/nav_data_perusahaan"
+        android:icon="@drawable/ic_company"
+        android:title="Data Perusahaan" />
+
 </menu>

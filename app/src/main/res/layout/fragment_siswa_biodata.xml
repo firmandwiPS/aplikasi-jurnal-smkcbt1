@@ -92,7 +92,7 @@
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="#FF9800"
-                        android:layout_marginBottom="8dp"/>
+                        android:layout_marginBottom="8dp" />
 
                     <!-- NIS -->
                     <TextView
@@ -106,7 +106,8 @@
                         android:layout_height="wrap_content"
                         android:text="-"
                         android:layout_marginBottom="8dp"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:enabled="false" />
 
                     <!-- Kelas -->
                     <TextView
@@ -122,19 +123,33 @@
                         android:layout_marginBottom="8dp"
                         android:inputType="text" />
 
-                    <!-- Tempat dan Tanggal Lahir -->
+                    <!-- Tempat Lahir -->
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Tempat, Tanggal Lahir"
+                        android:text="Tempat Lahir"
                         android:textStyle="bold" />
                     <EditText
-                        android:id="@+id/tvTTL"
+                        android:id="@+id/tvTempatLahir"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="-"
                         android:layout_marginBottom="8dp"
                         android:inputType="text" />
+
+                    <!-- Tanggal Lahir -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tanggal Lahir"
+                        android:textStyle="bold" />
+                    <EditText
+                        android:id="@+id/tvTanggalLahir"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:layout_marginBottom="8dp"
+                        android:inputType="date" />
 
                     <!-- Alamat Rumah -->
                     <TextView
@@ -189,7 +204,7 @@
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="#FF9800"
-                        android:layout_marginBottom="8dp"/>
+                        android:layout_marginBottom="8dp" />
 
                     <!-- Tempat PKL -->
                     <TextView
@@ -199,6 +214,35 @@
                         android:textStyle="bold" />
                     <EditText
                         android:id="@+id/tvTempatPkl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:layout_marginBottom="8dp"
+                        android:inputType="text" />
+
+                    <!-- Alamat PKL -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Alamat PKL"
+                        android:textStyle="bold" />
+                    <EditText
+                        android:id="@+id/tvAlamatPkl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:layout_marginBottom="8dp"
+                        android:inputType="textMultiLine"
+                        android:lines="2" />
+
+                    <!-- Bidang Kerja -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Bidang Kerja"
+                        android:textStyle="bold" />
+                    <EditText
+                        android:id="@+id/tvBidangKerja"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="-"
@@ -219,19 +263,33 @@
                         android:layout_marginBottom="8dp"
                         android:inputType="text" />
 
-                    <!-- Tanggal PKL -->
+                    <!-- Mulai PKL -->
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Waktu PKL"
+                        android:text="Mulai PKL"
                         android:textStyle="bold" />
                     <EditText
-                        android:id="@+id/tvWaktuPkl"
+                        android:id="@+id/tvMulaiPkl"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="-"
                         android:layout_marginBottom="8dp"
-                        android:inputType="datetime" />
+                        android:inputType="date" />
+
+                    <!-- Selesai PKL -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Selesai PKL"
+                        android:textStyle="bold" />
+                    <EditText
+                        android:id="@+id/tvSelesaiPkl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:layout_marginBottom="8dp"
+                        android:inputType="date" />
 
                     <!-- Status PKL -->
                     <TextView
@@ -280,11 +338,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="EDIT BIODATA"
-                android:background="#FF9800"
-                android:textColor="@android:color/white" />
+                android:backgroundTint="#FF9800"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp"/>
 
-
+            <!-- ✅ Tambahan Tombol Logout -->
+            <Button
+                android:id="@+id/btnLogout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="LOGOUT"
+                android:backgroundTint="#D32F2F"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp"/>
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="40dp" />
