@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF3E0"
+    android:background="@drawable/bg_gradient"
     android:fillViewport="true">
 
     <LinearLayout
@@ -11,73 +12,130 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Header Orange -->
-        <RelativeLayout
+        <!-- Profile Header Section -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="240dp"
-            android:background="#FF9800">
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            app:strokeColor="@color/light_gray"
+            app:strokeWidth="1dp">
 
-            <!-- Foto Profil -->
-            <ImageView
-                android:id="@+id/ivProfile"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="32dp"
-                android:background="@drawable/bg_circle_white"
-                android:scaleType="centerCrop"
-                android:elevation="8dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:background="@color/white">
 
-            <!-- Nama -->
-            <EditText
-                android:id="@+id/tvName"
+                <ImageView
+                    android:id="@+id/imgProfile"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/ic_profile_placeholder"
+                    android:contentDescription="Profile image"
+                    android:layout_marginEnd="16dp"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/circle_bg"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tvNama"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:textColor="@color/primary_color"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="4dp"/>
+
+                    <TextView
+                        android:id="@+id/tvNis"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="@color/secondary_text"
+                        android:layout_marginBottom="4dp"/>
+
+                    <TextView
+                        android:id="@+id/tvKelas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="@color/secondary_text"/>
+
+                    <TextView
+                        android:id="@+id/tvJurusan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="@color/secondary_text"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/ivProfile"
-                android:layout_marginTop="8dp"
-                android:layout_centerHorizontal="true"
-                android:text="Nama"
-                android:textSize="18sp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:background="@null"
-                android:inputType="textPersonName"
-                android:cursorVisible="false"
-                android:focusable="true"
-                android:focusableInTouchMode="true" />
+                android:layout_gravity="end|top"
+                android:layout_margin="16dp"
+                android:src="@drawable/ic_edit"
+                app:backgroundTint="@color/primary_color"
+                app:tint="@color/white"
+                app:elevation="8dp"/>
+        </com.google.android.material.card.MaterialCardView>
 
-            <!-- Jurusan -->
-            <EditText
-                android:id="@+id/tvRole"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tvName"
-                android:layout_centerHorizontal="true"
-                android:text="Jurusan"
-                android:textSize="14sp"
-                android:textColor="@color/black"
-                android:background="@null"
-                android:inputType="text"
-                android:cursorVisible="false"
-                android:focusable="true"
-                android:focusableInTouchMode="true" />
-        </RelativeLayout>
-
-        <!-- Konten Utama -->
+        <!-- Toggle Buttons -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bg_rounded_toggle"
+            android:padding="4dp">
 
-            <!-- Card Informasi Pribadi -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cvPersonalInfo"
+            <Button
+                android:id="@+id/btnBiodata"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="Biodata"
+                android:textAllCaps="false"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                app:cornerRadius="8dp"/>
+
+            <Button
+                android:id="@+id/btnPkl"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="Data PKL"
+                android:textAllCaps="false"
+                android:layout_marginStart="4dp"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                app:cornerRadius="8dp"/>
+        </LinearLayout>
+
+        <!-- Biodata Section -->
+        <LinearLayout
+            android:id="@+id/layoutBiodata"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="24dp">
+
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="8dp">
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -89,107 +147,87 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Informasi Pribadi"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="#FF9800"
-                        android:layout_marginBottom="8dp" />
-
-                    <!-- NIS -->
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="NIS"
-                        android:textStyle="bold" />
-                    <EditText
-                        android:id="@+id/tvNis"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="-"
-                        android:layout_marginBottom="8dp"
-                        android:inputType="number"
-                        android:enabled="false" />
-
-                    <!-- Kelas -->
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Kelas"
-                        android:textStyle="bold" />
-                    <EditText
-                        android:id="@+id/tvKelas"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="-"
-                        android:layout_marginBottom="8dp"
-                        android:inputType="text" />
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                        android:textColor="@color/primary_color"
+                        android:layout_marginBottom="16dp"/>
 
                     <!-- Tempat Lahir -->
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Tempat Lahir"
-                        android:textStyle="bold" />
-                    <EditText
+                        android:textColor="@color/secondary_text"
+                        android:textSize="12sp"/>
+                    <TextView
                         android:id="@+id/tvTempatLahir"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="-"
-                        android:layout_marginBottom="8dp"
-                        android:inputType="text" />
+                        android:textSize="14sp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp"/>
 
                     <!-- Tanggal Lahir -->
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Tanggal Lahir"
-                        android:textStyle="bold" />
-                    <EditText
+                        android:textColor="@color/secondary_text"
+                        android:textSize="12sp"/>
+                    <TextView
                         android:id="@+id/tvTanggalLahir"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="-"
-                        android:layout_marginBottom="8dp"
-                        android:inputType="date" />
+                        android:textSize="14sp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp"/>
 
                     <!-- Alamat Rumah -->
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Alamat Rumah"
-                        android:textStyle="bold" />
-                    <EditText
-                        android:id="@+id/tvAlamat"
+                        android:textColor="@color/secondary_text"
+                        android:textSize="12sp"/>
+                    <TextView
+                        android:id="@+id/tvAlamatRumah"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="-"
-                        android:layout_marginBottom="8dp"
-                        android:inputType="textMultiLine"
-                        android:lines="3" />
+                        android:textSize="14sp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp"/>
 
-                    <!-- Nomor HP -->
+                    <!-- No. HP -->
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="No HP"
-                        android:textStyle="bold" />
-                    <EditText
+                        android:text="No. HP"
+                        android:textColor="@color/secondary_text"
+                        android:textSize="12sp"/>
+                    <TextView
                         android:id="@+id/tvNoHp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="-"
-                        android:layout_marginBottom="8dp"
-                        android:inputType="phone" />
+                        android:textSize="14sp"
+                        android:layout_marginTop="4dp"/>
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
 
-            <!-- Card Informasi PKL -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cvPklInfo"
+        <!-- PKL Section -->
+        <LinearLayout
+            android:id="@+id/layoutPkl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="24dp"
+            android:visibility="gone">
+
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="8dp">
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -201,160 +239,130 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Informasi PKL"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="#FF9800"
-                        android:layout_marginBottom="8dp" />
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                        android:textColor="@color/primary_color"
+                        android:layout_marginBottom="16dp"/>
 
                     <!-- Tempat PKL -->
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Tempat PKL"
-                        android:textStyle="bold" />
-                    <EditText
+                        android:textColor="@color/secondary_text"
+                        android:textSize="12sp"/>
+                    <TextView
                         android:id="@+id/tvTempatPkl"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="-"
-                        android:layout_marginBottom="8dp"
-                        android:inputType="text" />
+                        android:textSize="14sp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp"/>
 
                     <!-- Alamat PKL -->
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Alamat PKL"
-                        android:textStyle="bold" />
-                    <EditText
+                        android:textColor="@color/secondary_text"
+                        android:textSize="12sp"/>
+                    <TextView
                         android:id="@+id/tvAlamatPkl"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="-"
-                        android:layout_marginBottom="8dp"
-                        android:inputType="textMultiLine"
-                        android:lines="2" />
+                        android:textSize="14sp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp"/>
 
                     <!-- Bidang Kerja -->
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Bidang Kerja"
-                        android:textStyle="bold" />
-                    <EditText
+                        android:textColor="@color/secondary_text"
+                        android:textSize="12sp"/>
+                    <TextView
                         android:id="@+id/tvBidangKerja"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="-"
-                        android:layout_marginBottom="8dp"
-                        android:inputType="text" />
+                        android:textSize="14sp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp"/>
 
                     <!-- Pembimbing -->
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Pembimbing"
-                        android:textStyle="bold" />
-                    <EditText
+                        android:textColor="@color/secondary_text"
+                        android:textSize="12sp"/>
+                    <TextView
                         android:id="@+id/tvPembimbing"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="-"
-                        android:layout_marginBottom="8dp"
-                        android:inputType="text" />
+                        android:textSize="14sp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp"/>
 
                     <!-- Mulai PKL -->
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Mulai PKL"
-                        android:textStyle="bold" />
-                    <EditText
+                        android:textColor="@color/secondary_text"
+                        android:textSize="12sp"/>
+                    <TextView
                         android:id="@+id/tvMulaiPkl"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="-"
-                        android:layout_marginBottom="8dp"
-                        android:inputType="date" />
+                        android:textSize="14sp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp"/>
 
                     <!-- Selesai PKL -->
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Selesai PKL"
-                        android:textStyle="bold" />
-                    <EditText
+                        android:textColor="@color/secondary_text"
+                        android:textSize="12sp"/>
+                    <TextView
                         android:id="@+id/tvSelesaiPkl"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="-"
-                        android:layout_marginBottom="8dp"
-                        android:inputType="date" />
+                        android:textSize="14sp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp"/>
 
                     <!-- Status PKL -->
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Status PKL"
-                        android:textStyle="bold" />
-                    <EditText
-                        android:id="@+id/tvStatus"
+                        android:textColor="@color/secondary_text"
+                        android:textSize="12sp"/>
+                    <TextView
+                        android:id="@+id/tvStatusPkl"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="-"
-                        android:layout_marginBottom="8dp"
-                        android:inputType="text" />
+                        android:textSize="14sp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp"/>
 
-                    <!-- Catatan -->
+                    <!-- Catatan PKL -->
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Catatan PKL"
-                        android:textStyle="bold" />
-                    <EditText
-                        android:id="@+id/tvCatatan"
+                        android:textColor="@color/secondary_text"
+                        android:textSize="12sp"/>
+                    <TextView
+                        android:id="@+id/tvCatatanPkl"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="-"
-                        android:layout_marginBottom="8dp"
-                        android:inputType="textMultiLine"
-                        android:lines="3" />
+                        android:textSize="14sp"
+                        android:layout_marginTop="4dp"/>
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <!-- Tombol Aksi -->
-            <Button
-                android:id="@+id/btnChangePhoto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="GANTI FOTO PROFIL"
-                android:background="#757575"
-                android:textColor="@android:color/white"
-                android:visibility="gone" />
-
-            <Button
-                android:id="@+id/btnSave"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="EDIT BIODATA"
-                android:backgroundTint="#FF9800"
-                android:textColor="@android:color/white"
-                android:layout_marginBottom="8dp"/>
-
-            <!-- ✅ Tambahan Tombol Logout -->
-            <Button
-                android:id="@+id/btnLogout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="LOGOUT"
-                android:backgroundTint="#D32F2F"
-                android:textColor="@android:color/white"
-                android:layout_marginBottom="8dp"/>
+            </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="40dp" />
     </LinearLayout>
 </ScrollView>
