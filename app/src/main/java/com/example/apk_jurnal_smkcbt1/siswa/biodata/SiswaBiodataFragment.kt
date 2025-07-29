@@ -1,4 +1,4 @@
-package com.example.apk_jurnal_smkcbt1.siswa
+package com.example.apk_jurnal_smkcbt1.siswa.biodata
 
 import android.content.Context
 import android.os.Bundle
@@ -12,10 +12,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.apk_jurnal_smkcbt1.R
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.json.JSONObject
 
 class SiswaBiodataFragment : Fragment() {
@@ -24,6 +27,7 @@ class SiswaBiodataFragment : Fragment() {
     private lateinit var btnPkl: Button
     private lateinit var layoutBiodata: LinearLayout
     private lateinit var layoutPkl: LinearLayout
+    private lateinit var fabEdit: FloatingActionButton
 
     // Personal Data Views
     private lateinit var tvNis: TextView
@@ -45,7 +49,11 @@ class SiswaBiodataFragment : Fragment() {
     private lateinit var tvStatusPkl: TextView
     private lateinit var tvCatatanPkl: TextView
 
-    private val BIODATA_URL = "http://192.168.1.100/backend-app-jurnalcbt1/siswa_user/biodata_siswa/biodata_user_siswa.php"
+    private val BIODATA_URL = "http://192.168.1.106/backend-app-jurnalcbt1/siswa_user/biodata_siswa/biodata_user_siswa.php"
+
+    // Add color variables
+    private val selectedColor by lazy { ContextCompat.getColor(requireContext(), R.color.oren) }
+    private val unselectedColor by lazy { ContextCompat.getColor(requireContext(), android.R.color.white) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,14 +62,8 @@ class SiswaBiodataFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_siswa_biodata, container, false)
 
-        // Initialize all views
         initViews(view)
-
-        // Set button click listeners
-        btnBiodata.setOnClickListener { showBiodata() }
-        btnPkl.setOnClickListener { showPklData() }
-
-        // Load data and show biodata by default
+        setupClickListeners()
         loadBiodata()
         showBiodata()
 
@@ -73,8 +75,9 @@ class SiswaBiodataFragment : Fragment() {
         btnPkl = view.findViewById(R.id.btnPkl)
         layoutBiodata = view.findViewById(R.id.layoutBiodata)
         layoutPkl = view.findViewById(R.id.layoutPkl)
+        fabEdit = view.findViewById(R.id.fabEdit)
 
-        // Personal Data
+        // Initialize all TextViews
         tvNis = view.findViewById(R.id.tvNis)
         tvNama = view.findViewById(R.id.tvNama)
         tvKelas = view.findViewById(R.id.tvKelas)
@@ -84,7 +87,6 @@ class SiswaBiodataFragment : Fragment() {
         tvAlamatRumah = view.findViewById(R.id.tvAlamatRumah)
         tvNoHp = view.findViewById(R.id.tvNoHp)
 
-        // PKL Data
         tvTempatPkl = view.findViewById(R.id.tvTempatPkl)
         tvAlamatPkl = view.findViewById(R.id.tvAlamatPkl)
         tvBidangKerja = view.findViewById(R.id.tvBidangKerja)
@@ -93,6 +95,56 @@ class SiswaBiodataFragment : Fragment() {
         tvSelesaiPkl = view.findViewById(R.id.tvSelesaiPkl)
         tvStatusPkl = view.findViewById(R.id.tvStatusPkl)
         tvCatatanPkl = view.findViewById(R.id.tvCatatanPkl)
+    }
+
+    private fun setupClickListeners() {
+        btnBiodata.setOnClickListener { showBiodata() }
+        btnPkl.setOnClickListener { showPklData() }
+        fabEdit.setOnClickListener { navigateToEditFragment() }
+    }
+
+    private fun navigateToEditFragment() {
+        // Create instance of destination fragment
+        val ubahFragment = UbahSiswaBiodataFragment()
+
+        // Prepare bundle with data
+        val bundle = Bundle().apply {
+            // Personal Data
+            putString("nis", tvNis.text.toString())
+            putString("nama", tvNama.text.toString())
+            putString("kelas", tvKelas.text.toString())
+            putString("jurusan", tvJurusan.text.toString())
+            putString("tempat_lahir", tvTempatLahir.text.toString())
+            putString("tanggal_lahir", tvTanggalLahir.text.toString())
+            putString("alamat_rumah", tvAlamatRumah.text.toString())
+            putString("no_hp", tvNoHp.text.toString())
+
+            // PKL Data
+            putString("tempat_pkl", tvTempatPkl.text.toString())
+            putString("alamat_pkl", tvAlamatPkl.text.toString())
+            putString("bidang_kerja", tvBidangKerja.text.toString())
+            putString("pembimbing", tvPembimbing.text.toString())
+            putString("mulai_pkl", tvMulaiPkl.text.toString())
+            putString("selesai_pkl", tvSelesaiPkl.text.toString())
+            putString("status_pkl", tvStatusPkl.text.toString())
+            putString("catatan_pkl", tvCatatanPkl.text.toString())
+        }
+
+        // Set arguments to fragment
+        ubahFragment.arguments = bundle
+
+        // Perform fragment transaction
+        val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
+        val transaction: FragmentTransaction = fragmentManager.beginTransaction()
+
+        // Replace current fragment with new fragment
+        transaction.replace(R.id.fragment_container, ubahFragment)
+
+        // Add to back stack to allow back navigation
+        transaction.addToBackStack(null)
+
+        // Commit transaction
+        transaction.commit()
     }
 
     private fun showBiodata() {
@@ -108,9 +160,6 @@ class SiswaBiodataFragment : Fragment() {
     }
 
     private fun updateButtonColors(isBiodataSelected: Boolean) {
-        val selectedColor = ContextCompat.getColor(requireContext(), R.color.primary_color)
-        val unselectedColor = ContextCompat.getColor(requireContext(), R.color.white)
-
         btnBiodata.setBackgroundColor(if (isBiodataSelected) selectedColor else unselectedColor)
         btnBiodata.setTextColor(if (isBiodataSelected) unselectedColor else selectedColor)
 

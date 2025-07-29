@@ -5,10 +5,7 @@
     <!-- Solid color background -->
     <solid android:color="@color/light_gray"/>
 
-    <!-- Border -->
-    <stroke
-        android:width="2dp"
-        android:color="@color/primary_color"/>
+
 
     <!-- Size -->
     <size

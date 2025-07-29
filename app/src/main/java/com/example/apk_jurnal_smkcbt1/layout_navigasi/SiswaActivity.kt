@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.apk_jurnal_smkcbt1.R
 import com.example.apk_jurnal_smkcbt1.siswa.*
+import com.example.apk_jurnal_smkcbt1.siswa.biodata.SiswaBiodataFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class SiswaActivity : AppCompatActivity() {
