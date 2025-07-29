@@ -50,7 +50,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
-                        android:textColor="@color/primary_color"
+                        android:textColor="@color/oren"
                         android:textStyle="bold"
                         android:layout_marginBottom="4dp"/>
 
@@ -85,7 +85,7 @@
                 android:layout_gravity="end|top"
                 android:layout_margin="16dp"
                 android:src="@drawable/ic_edit"
-                app:backgroundTint="@color/primary_color"
+                app:backgroundTint="@color/oren"
                 app:tint="@color/white"
                 app:elevation="8dp"/>
         </com.google.android.material.card.MaterialCardView>
@@ -141,14 +141,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="16dp"
+                    android:background="@color/white">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Informasi Pribadi"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-                        android:textColor="@color/primary_color"
+                        android:textColor="@color/oren"
                         android:layout_marginBottom="16dp"/>
 
                     <!-- Tempat Lahir -->
@@ -233,14 +234,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="16dp"
+                    android:background="@color/white">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Informasi PKL"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-                        android:textColor="@color/primary_color"
+                        android:textColor="@color/oren"
                         android:layout_marginBottom="16dp"/>
 
                     <!-- Tempat PKL -->

@@ -93,19 +93,28 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="20dp" />
 
-                <!-- Password Input -->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/keyakses_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Akses Key"
-                    app:endIconMode="password_toggle">
+                    app:endIconMode="password_toggle"
+                    app:errorEnabled="true"
+                    android:textColorHint="@color/black"
+                app:boxStrokeColor="@color/black"
+                app:hintTextColor="@color/black"
+                    app:endIconTint="@color/black"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/keyakses"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPassword" />
-                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/keyakses"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:inputType="textPassword"
+                android:textSize="16sp"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Login Button -->
                 <com.google.android.material.button.MaterialButton
