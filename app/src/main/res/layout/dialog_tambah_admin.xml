@@ -1,0 +1,60 @@
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="6dp"
+    app:strokeColor="@color/white"
+    app:strokeWidth="1dp">
+
+    <LinearLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/etNis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="NIS"
+            android:textColor="@android:color/black"
+            android:textColorHint="@color/black" />
+
+        <EditText
+            android:id="@+id/etKeyAkses"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Key Akses"
+            android:textColor="@android:color/black"
+            android:textColorHint="@color/black" />
+
+        <EditText
+            android:id="@+id/etLevel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Level (1-5)"
+            android:textColor="@android:color/black"
+            android:textColorHint="@color/black" />
+
+        <Button
+            android:id="@+id/btnSimpan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Simpan"
+            android:backgroundTint="@color/tambah"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btnTutup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tutup"
+            android:backgroundTint="@color/hapus"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

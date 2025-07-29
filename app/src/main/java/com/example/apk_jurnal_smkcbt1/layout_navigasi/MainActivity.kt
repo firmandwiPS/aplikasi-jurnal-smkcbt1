@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.apk_jurnal_smkcbt1.R
 import com.example.apk_jurnal_smkcbt1.admin.*
+import com.example.apk_jurnal_smkcbt1.admin.user.AdminDataUserFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
