@@ -1,5 +1,6 @@
 package com.example.apk_jurnal_smkcbt1.admin.user.user_siswa
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.*
 import android.widget.*
@@ -19,67 +20,79 @@ class UserAdminFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var fabAdd: FloatingActionButton
+    private var btnBack: ImageButton? = null
     private val adminList = mutableListOf<JSONObject>()
+
+    private val urlTampil = "http://192.168.1.13/backend-app-jurnalcbt1/admin_user/data_user/user_admin/tampil_data_user_admin.php"
+    private val urlTambah = "http://192.168.1.13/backend-app-jurnalcbt1/admin_user/data_user/user_admin/tambah_data_user_admin.php"
+    private val urlUbah = "http://192.168.1.13/backend-app-jurnalcbt1/admin_user/data_user/user_admin/ubah_data_user_admin.php"
+    private val urlHapus = "http://192.168.1.13/backend-app-jurnalcbt1/admin_user/data_user/user_admin/hapus_data_user_admin.php"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val view = inflater.inflate(R.layout.fragment_user_admin, container, false)
 
         recyclerView = view.findViewById(R.id.recyclerViewAdmin)
         recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = AdminAdapter(adminList)
 
         fabAdd = view.findViewById(R.id.fabAdd)
         fabAdd.setOnClickListener {
-            showBottomSheetDialog()
+            showFormDialog(null)
         }
 
-        recyclerView.adapter = AdminAdapter(adminList)
-        fetchData()
+        btnBack = view.findViewById(R.id.btnBack)
+        btnBack?.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
 
+        fetchData()
         return view
     }
 
     private fun fetchData() {
-        val url = "http://192.168.1.106/backend-app-jurnalcbt1/admin_user/data_user_admin/user_admin/tampil_data_user_admin.php"
-        val requestQueue = Volley.newRequestQueue(requireContext())
-
-        val jsonObjectRequest = JsonObjectRequest(
-            Request.Method.GET, url, null,
+        val request = JsonObjectRequest(
+            Request.Method.GET, urlTampil, null,
             { response ->
-                try {
-                    if (response.getBoolean("success")) {
-                        val dataArray: JSONArray = response.getJSONArray("data")
-                        adminList.clear()
-                        for (i in 0 until dataArray.length()) {
-                            adminList.add(dataArray.getJSONObject(i))
-                        }
-                        recyclerView.adapter?.notifyDataSetChanged()
-                    } else {
-                        Toast.makeText(context, "Data tidak ditemukan", Toast.LENGTH_SHORT).show()
+                if (response.optBoolean("success")) {
+                    val dataArray = response.optJSONArray("data") ?: JSONArray()
+                    adminList.clear()
+                    for (i in 0 until dataArray.length()) {
+                        adminList.add(dataArray.getJSONObject(i))
                     }
-                } catch (e: Exception) {
-                    Toast.makeText(context, "Parsing error: ${e.message}", Toast.LENGTH_SHORT).show()
+                    recyclerView.adapter?.notifyDataSetChanged()
+                } else {
+                    Toast.makeText(context, "Data tidak ditemukan", Toast.LENGTH_SHORT).show()
                 }
             },
-            {
-                Toast.makeText(context, "Gagal koneksi ke server", Toast.LENGTH_SHORT).show()
+            { error ->
+                Toast.makeText(context, "Gagal koneksi: ${error.message}", Toast.LENGTH_SHORT).show()
             })
-
-        requestQueue.add(jsonObjectRequest)
+        Volley.newRequestQueue(requireContext()).add(request)
     }
 
-    private fun showBottomSheetDialog() {
+    private fun showFormDialog(data: JSONObject?) {
         val dialog = BottomSheetDialog(requireContext())
-        val view = layoutInflater.inflate(R.layout.dialog_tambah_admin, null)
+        val view = if (data == null) {
+            layoutInflater.inflate(R.layout.dialog_tambah_admin, null)
+        } else {
+            layoutInflater.inflate(R.layout.dialog_ubah_admin, null)
+        }
 
-        val etNis = view.findViewById<EditText>(R.id.etNis)
-        val etKeyAkses = view.findViewById<EditText>(R.id.etKeyAkses)
-        val etLevel = view.findViewById<EditText>(R.id.etLevel) // Tambahkan field level di layout XML
+        val etNis: EditText = view.findViewById(R.id.etNis)
+        val etKeyAkses: EditText = view.findViewById(R.id.etKeyAkses)
+        val etLevel: EditText = view.findViewById(R.id.etLevel)
+        val btnSimpan: Button = view.findViewById(R.id.btnSimpan)
+        val btnTutup: Button = view.findViewById(R.id.btnTutup)
 
-        val btnSimpan = view.findViewById<Button>(R.id.btnSimpan)
-        val btnTutup = view.findViewById<Button>(R.id.btnTutup)
+        data?.let {
+            etNis.setText(it.optString("nis"))
+            etKeyAkses.setText(it.optString("key_akses"))
+            etLevel.setText(it.optString("level"))
+            btnSimpan.text = "Ubah"
+        }
 
         btnSimpan.setOnClickListener {
             val nis = etNis.text.toString().trim()
@@ -91,21 +104,24 @@ class UserAdminFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            val urlTambah = "http://192.168.1.106/backend-app-jurnalcbt1/admin_user/data_user_admin/user_admin/tambah_data_user_admin.php"
+            val params = JSONObject().apply {
+                put("nis", nis)
+                put("key_akses", keyAkses)
+                put("level", level)
+                data?.let { put("id", it.optString("id")) }
+            }
 
-            val params = HashMap<String, String>()
-            params["nis"] = nis
-            params["key_akses"] = keyAkses
-            params["level"] = level
-
-            val jsonObject = JSONObject(params as Map<*, *>)
-            val requestQueue = Volley.newRequestQueue(requireContext())
+            val urlToUse = if (data == null) urlTambah else urlUbah
 
             val request = JsonObjectRequest(
-                Request.Method.POST, urlTambah, jsonObject,
+                Request.Method.POST, urlToUse, params,
                 { response ->
-                    if (response.getBoolean("success")) {
-                        Toast.makeText(context, "Data berhasil ditambahkan", Toast.LENGTH_SHORT).show()
+                    if (response.optBoolean("success")) {
+                        Toast.makeText(
+                            context,
+                            if (data == null) "Data ditambahkan" else "Data diubah",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         dialog.dismiss()
                         fetchData()
                     } else {
@@ -114,10 +130,9 @@ class UserAdminFragment : Fragment() {
                 },
                 { error ->
                     Toast.makeText(context, "Gagal koneksi: ${error.message}", Toast.LENGTH_SHORT).show()
-                }
-            )
+                })
 
-            requestQueue.add(request)
+            Volley.newRequestQueue(requireContext()).add(request)
         }
 
         btnTutup.setOnClickListener {
@@ -128,58 +143,50 @@ class UserAdminFragment : Fragment() {
         dialog.show()
     }
 
+    private fun showDeleteConfirmation(data: JSONObject) {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Konfirmasi Hapus")
+            .setMessage("Yakin ingin menghapus data ini?")
+            .setPositiveButton("Ya") { _, _ ->
+                val params = JSONObject().apply {
+                    put("id", data.optString("id"))
+                }
+
+                val request = JsonObjectRequest(
+                    Request.Method.POST, urlHapus, params,
+                    { response ->
+                        if (response.optBoolean("success")) {
+                            Toast.makeText(context, "Data dihapus", Toast.LENGTH_SHORT).show()
+                            fetchData()
+                        } else {
+                            Toast.makeText(context, response.optString("message"), Toast.LENGTH_SHORT).show()
+                        }
+                    },
+                    { error ->
+                        Toast.makeText(context, "Gagal koneksi: ${error.message}", Toast.LENGTH_SHORT).show()
+                    })
+
+                Volley.newRequestQueue(requireContext()).add(request)
+            }
+            .setNegativeButton("Tidak", null)
+            .show()
+    }
 
     inner class AdminAdapter(private val items: List<JSONObject>) :
         RecyclerView.Adapter<AdminAdapter.AdminViewHolder>() {
 
         inner class AdminViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-            val tvNis: TextView
-            val tvKeyAkses: TextView
-            val tvLevel: TextView
-
-            init {
-                val layout = view as LinearLayout
-                tvNis = layout.getChildAt(0) as TextView
-                tvKeyAkses = layout.getChildAt(1) as TextView
-                tvLevel = layout.getChildAt(2) as TextView
-            }
+            val tvNis: TextView = view.findViewById(R.id.tvNis)
+            val tvKeyAkses: TextView = view.findViewById(R.id.tvKeyAkses)
+            val tvLevel: TextView = view.findViewById(R.id.tvLevel)
+            val btnEdit: Button = view.findViewById(R.id.btnEdit)
+            val btnDelete: Button = view.findViewById(R.id.btnDelete)
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdminViewHolder {
-            val context = parent.context
-
-            val layout = LinearLayout(context).apply {
-                orientation = LinearLayout.VERTICAL
-                setPadding(32, 32, 32, 32)
-                setBackgroundColor(0xFFFFFFFF.toInt())
-                layoutParams = ViewGroup.MarginLayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-                ).apply {
-                    setMargins(16, 16, 16, 16)
-                }
-            }
-
-            val tvNis = TextView(context).apply {
-                textSize = 18f
-                setTextColor(0xFF000000.toInt())
-            }
-
-            val tvKeyAkses = TextView(context).apply {
-                textSize = 16f
-                setTextColor(0xFF222222.toInt())
-            }
-
-            val tvLevel = TextView(context).apply {
-                textSize = 16f
-                setTextColor(0xFF444444.toInt())
-            }
-
-            layout.addView(tvNis)
-            layout.addView(tvKeyAkses)
-            layout.addView(tvLevel)
-
-            return AdminViewHolder(layout)
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_admin_card, parent, false)
+            return AdminViewHolder(view)
         }
 
         override fun onBindViewHolder(holder: AdminViewHolder, position: Int) {
@@ -187,6 +194,14 @@ class UserAdminFragment : Fragment() {
             holder.tvNis.text = "NIS: ${obj.optString("nis")}"
             holder.tvKeyAkses.text = "Key Akses: ${obj.optString("key_akses")}"
             holder.tvLevel.text = "Level: ${obj.optString("level")}"
+
+            holder.btnEdit.setOnClickListener {
+                showFormDialog(obj)
+            }
+
+            holder.btnDelete.setOnClickListener {
+                showDeleteConfirmation(obj)
+            }
         }
 
         override fun getItemCount(): Int = items.size

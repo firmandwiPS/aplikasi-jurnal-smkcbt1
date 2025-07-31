@@ -49,7 +49,7 @@ class SiswaBiodataFragment : Fragment() {
     private lateinit var tvStatusPkl: TextView
     private lateinit var tvCatatanPkl: TextView
 
-    private val BIODATA_URL = "http://192.168.1.106/backend-app-jurnalcbt1/siswa_user/biodata_siswa/biodata_user_siswa.php"
+    private val BIODATA_URL = "http://192.168.1.13/backend-app-jurnalcbt1/siswa_user/biodata_siswa/biodata_user_siswa.php"
 
     // Add color variables
     private val selectedColor by lazy { ContextCompat.getColor(requireContext(), R.color.oren) }

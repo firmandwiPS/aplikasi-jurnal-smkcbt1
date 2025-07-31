@@ -31,10 +31,8 @@ class UbahSiswaBiodataFragment : Fragment() {
     private lateinit var etSelesaiPkl: EditText
     private lateinit var etStatusPkl: EditText
     private lateinit var etCatatanPkl: EditText
-
     private lateinit var btnSimpan: Button
-
-    private val UPDATE_URL = "http://192.168.1.106/backend-app-jurnalcbt1/siswa_user/biodata_siswa/ubah_biodata_user_siswa.php"
+    private val UPDATE_URL = "http://192.168.1.13/backend-app-jurnalcbt1/siswa_user/biodata_siswa/ubah_biodata_user_siswa.php"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_margin="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:padding="16dp"
+    android:elevation="4dp">
+
+    <TextView
+        android:id="@+id/tvNis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="NIS:"
+        android:textSize="18sp"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/tvKeyAkses"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Key Akses:"
+        android:textSize="16sp"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/tvLevel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Level:"
+        android:textSize="16sp"
+        android:textColor="@android:color/black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end"
+        android:paddingTop="8dp">
+
+        <Button
+            android:id="@+id/btnEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ubah"
+            android:backgroundTint="@color/ubah"
+            android:textColor="@android:color/white" />
+
+        <Space
+            android:layout_width="8dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hapus"
+            android:backgroundTint="@color/hapus"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+</LinearLayout>

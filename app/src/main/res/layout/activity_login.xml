@@ -25,7 +25,7 @@
             android:background="@drawable/circle_white"
             android:contentDescription="Logo Sekolah"
             android:padding="16dp"
-            android:src="@drawable/logo" />
+            android:src="@raw/logo" />
 
         <TextView
             android:id="@+id/namaSekolah"

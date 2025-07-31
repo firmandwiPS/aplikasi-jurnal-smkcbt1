@@ -2,29 +2,49 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_user_admin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".admin.user.user_siswa.UserAdminFragment">
 
-    <!-- Kontainer Utama -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Judul -->
-        <TextView
-            android:id="@+id/titleUserAdmin"
+        <!-- Header -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Data User Admin"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:gravity="center"
-            android:paddingBottom="8dp" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="8dp">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_arrow_back"
+                android:contentDescription="Kembali" />
+
+            <TextView
+                android:id="@+id/titleUserAdmin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Data User Admin"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black" />
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:visibility="invisible" />
+        </LinearLayout>
 
         <!-- RecyclerView -->
         <androidx.recyclerview.widget.RecyclerView
@@ -33,16 +53,16 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:clipToPadding="false"
-            android:paddingBottom="8dp" />
+            android:paddingBottom="8dp"
+            android:overScrollMode="ifContentScrolls" />
 
         <!-- Footer -->
         <TextView
             android:id="@+id/footerText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp" />
+            android:gravity="center"
+            android:textColor="@android:color/darker_gray" />
     </LinearLayout>
 
     <!-- Floating Action Button -->
@@ -50,12 +70,11 @@
         android:id="@+id/fabAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="20dp"
+        android:layout_gravity="top|end"
+        android:layout_margin="16dp"
         android:contentDescription="Tambah User"
         app:backgroundTint="@color/tambah"
         app:srcCompat="@drawable/ic_add"
-        app:tint="@android:color/white" />
-
-
+        app:tint="@android:color/white"
+        android:elevation="6dp" />
 </FrameLayout>

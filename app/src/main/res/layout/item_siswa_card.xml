@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    app:strokeColor="@color/white"
+    app:strokeWidth="1dp"
+    android:layout_marginHorizontal="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tvNis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NIS: 12345678"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvKeyAkses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Key Akses: abc123"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Level: 3"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:paddingBottom="8dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end">
+
+            <Button
+                android:id="@+id/btnUbah"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ubah"
+                android:backgroundTint="@color/ubah"
+                android:textColor="@android:color/white"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/btnHapus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hapus"
+                android:backgroundTint="@color/hapus"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
