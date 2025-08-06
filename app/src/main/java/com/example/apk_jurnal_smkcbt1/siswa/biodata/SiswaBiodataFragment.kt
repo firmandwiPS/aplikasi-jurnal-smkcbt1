@@ -1,241 +1,233 @@
 package com.example.apk_jurnal_smkcbt1.siswa.biodata
 
 import android.content.Context
+import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.LinearLayout
+import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.apk_jurnal_smkcbt1.R
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.example.apk_jurnal_smkcbt1.login.LoginActivity
+import org.json.JSONException
 import org.json.JSONObject
 
 class SiswaBiodataFragment : Fragment() {
 
-    private lateinit var btnBiodata: Button
-    private lateinit var btnPkl: Button
-    private lateinit var layoutBiodata: LinearLayout
-    private lateinit var layoutPkl: LinearLayout
-    private lateinit var fabEdit: FloatingActionButton
-
-    // Personal Data Views
-    private lateinit var tvNis: TextView
+    private lateinit var progressBar: ProgressBar
+    private lateinit var fotoSiswa: ImageView
     private lateinit var tvNama: TextView
+    private lateinit var tvNis: TextView
     private lateinit var tvKelas: TextView
     private lateinit var tvJurusan: TextView
+    private lateinit var tvJenisKelamin: TextView
     private lateinit var tvTempatLahir: TextView
     private lateinit var tvTanggalLahir: TextView
-    private lateinit var tvAlamatRumah: TextView
+    private lateinit var tvAlamat: TextView
     private lateinit var tvNoHp: TextView
-
-    // PKL Data Views
+    private lateinit var tvEmail: TextView
+    private lateinit var tvStatus: TextView
     private lateinit var tvTempatPkl: TextView
     private lateinit var tvAlamatPkl: TextView
     private lateinit var tvBidangKerja: TextView
     private lateinit var tvPembimbing: TextView
+    private lateinit var tvNoHpPembimbing: TextView
     private lateinit var tvMulaiPkl: TextView
     private lateinit var tvSelesaiPkl: TextView
     private lateinit var tvStatusPkl: TextView
     private lateinit var tvCatatanPkl: TextView
-
-    private val BIODATA_URL = "http://192.168.1.13/backend-app-jurnalcbt1/siswa_user/biodata_siswa/biodata_user_siswa.php"
-
-    // Add color variables
-    private val selectedColor by lazy { ContextCompat.getColor(requireContext(), R.color.oren) }
-    private val unselectedColor by lazy { ContextCompat.getColor(requireContext(), android.R.color.white) }
+    private lateinit var btnLogout: Button
+    private lateinit var btnEdit: Button
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_siswa_biodata, container, false)
+        return inflater.inflate(R.layout.fragment_siswa_biodata, container, false)
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initViews(view)
-        setupClickListeners()
-        loadBiodata()
-        showBiodata()
-
-        return view
+        setupLogoutButton()
+        setupEditButton()
+        fetchBiodata()
     }
 
     private fun initViews(view: View) {
-        btnBiodata = view.findViewById(R.id.btnBiodata)
-        btnPkl = view.findViewById(R.id.btnPkl)
-        layoutBiodata = view.findViewById(R.id.layoutBiodata)
-        layoutPkl = view.findViewById(R.id.layoutPkl)
-        fabEdit = view.findViewById(R.id.fabEdit)
-
-        // Initialize all TextViews
-        tvNis = view.findViewById(R.id.tvNis)
+        progressBar = view.findViewById(R.id.progressBar)
+        fotoSiswa = view.findViewById(R.id.ivFotoSiswa)
         tvNama = view.findViewById(R.id.tvNama)
+        tvNis = view.findViewById(R.id.tvNis)
         tvKelas = view.findViewById(R.id.tvKelas)
         tvJurusan = view.findViewById(R.id.tvJurusan)
+        tvJenisKelamin = view.findViewById(R.id.tvJenisKelamin)
         tvTempatLahir = view.findViewById(R.id.tvTempatLahir)
         tvTanggalLahir = view.findViewById(R.id.tvTanggalLahir)
-        tvAlamatRumah = view.findViewById(R.id.tvAlamatRumah)
+        tvAlamat = view.findViewById(R.id.tvAlamat)
         tvNoHp = view.findViewById(R.id.tvNoHp)
-
+        tvEmail = view.findViewById(R.id.tvEmail)
+        tvStatus = view.findViewById(R.id.tvStatus)
         tvTempatPkl = view.findViewById(R.id.tvTempatPkl)
         tvAlamatPkl = view.findViewById(R.id.tvAlamatPkl)
         tvBidangKerja = view.findViewById(R.id.tvBidangKerja)
         tvPembimbing = view.findViewById(R.id.tvPembimbing)
+        tvNoHpPembimbing = view.findViewById(R.id.tvNoHpPembimbing)
         tvMulaiPkl = view.findViewById(R.id.tvMulaiPkl)
         tvSelesaiPkl = view.findViewById(R.id.tvSelesaiPkl)
         tvStatusPkl = view.findViewById(R.id.tvStatusPkl)
         tvCatatanPkl = view.findViewById(R.id.tvCatatanPkl)
+        btnLogout = view.findViewById(R.id.btnLogout)
+        btnEdit = view.findViewById(R.id.btnEdit)
     }
 
-    private fun setupClickListeners() {
-        btnBiodata.setOnClickListener { showBiodata() }
-        btnPkl.setOnClickListener { showPklData() }
-        fabEdit.setOnClickListener { navigateToEditFragment() }
-    }
+    private fun setupLogoutButton() {
+        btnLogout.setOnClickListener {
+            val sharedPref = requireActivity().getSharedPreferences("user_session", Context.MODE_PRIVATE)
+            sharedPref.edit().clear().apply()
 
-    private fun navigateToEditFragment() {
-        // Create instance of destination fragment
-        val ubahFragment = UbahSiswaBiodataFragment()
-
-        // Prepare bundle with data
-        val bundle = Bundle().apply {
-            // Personal Data
-            putString("nis", tvNis.text.toString())
-            putString("nama", tvNama.text.toString())
-            putString("kelas", tvKelas.text.toString())
-            putString("jurusan", tvJurusan.text.toString())
-            putString("tempat_lahir", tvTempatLahir.text.toString())
-            putString("tanggal_lahir", tvTanggalLahir.text.toString())
-            putString("alamat_rumah", tvAlamatRumah.text.toString())
-            putString("no_hp", tvNoHp.text.toString())
-
-            // PKL Data
-            putString("tempat_pkl", tvTempatPkl.text.toString())
-            putString("alamat_pkl", tvAlamatPkl.text.toString())
-            putString("bidang_kerja", tvBidangKerja.text.toString())
-            putString("pembimbing", tvPembimbing.text.toString())
-            putString("mulai_pkl", tvMulaiPkl.text.toString())
-            putString("selesai_pkl", tvSelesaiPkl.text.toString())
-            putString("status_pkl", tvStatusPkl.text.toString())
-            putString("catatan_pkl", tvCatatanPkl.text.toString())
+            val intent = Intent(activity, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            activity?.finish()
         }
-
-        // Set arguments to fragment
-        ubahFragment.arguments = bundle
-
-        // Perform fragment transaction
-        val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
-        val transaction: FragmentTransaction = fragmentManager.beginTransaction()
-
-        // Replace current fragment with new fragment
-        transaction.replace(R.id.fragment_container, ubahFragment)
-
-        // Add to back stack to allow back navigation
-        transaction.addToBackStack(null)
-
-        // Commit transaction
-        transaction.commit()
     }
 
-    private fun showBiodata() {
-        layoutBiodata.visibility = View.VISIBLE
-        layoutPkl.visibility = View.GONE
-        updateButtonColors(true)
+    private fun setupEditButton() {
+        btnEdit.setOnClickListener {
+            val fragment = UbahSiswaBiodataFragment()
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit()
+        }
     }
 
-    private fun showPklData() {
-        layoutBiodata.visibility = View.GONE
-        layoutPkl.visibility = View.VISIBLE
-        updateButtonColors(false)
-    }
+    private fun fetchBiodata() {
+        progressBar.visibility = View.VISIBLE
 
-    private fun updateButtonColors(isBiodataSelected: Boolean) {
-        btnBiodata.setBackgroundColor(if (isBiodataSelected) selectedColor else unselectedColor)
-        btnBiodata.setTextColor(if (isBiodataSelected) unselectedColor else selectedColor)
-
-        btnPkl.setBackgroundColor(if (!isBiodataSelected) selectedColor else unselectedColor)
-        btnPkl.setTextColor(if (!isBiodataSelected) unselectedColor else selectedColor)
-    }
-
-    private fun loadBiodata() {
         val sharedPref = requireActivity().getSharedPreferences("user_session", Context.MODE_PRIVATE)
         val nis = sharedPref.getString("nis", null) ?: run {
-            Toast.makeText(requireContext(), "NIS tidak ditemukan", Toast.LENGTH_SHORT).show()
+            showError("NIS tidak ditemukan")
             return
         }
 
-        val url = "$BIODATA_URL?nis=$nis"
+        val url = "http://192.168.130.91/backend-app-jurnalcbt1/siswa_user/biodata_siswa/biodata_user_siswa.php?nis=$nis"
 
-        val request = object : StringRequest(
+        val stringRequest = StringRequest(
             Request.Method.GET, url,
             { response ->
-                try {
-                    Log.d("BiodataResponse", response)
-                    val jsonResponse = JSONObject(response)
-
-                    when (jsonResponse.getString("status")) {
-                        "success" -> {
-                            val data = jsonResponse.getJSONObject("data")
-                            updateUIWithData(data)
-                        }
-                        "error" -> {
-                            val message = jsonResponse.getString("message")
-                            Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
-                        }
-                    }
-                } catch (e: Exception) {
-                    Log.e("BiodataError", "Error parsing: ${e.message}", e)
-                    Toast.makeText(requireContext(), "Error memproses data", Toast.LENGTH_LONG).show()
-                }
+                Log.d("BiodataResponse", response)
+                handleResponse(response)
             },
             { error ->
-                Log.e("BiodataError", "Network error: ${error.message}", error)
-                Toast.makeText(
-                    requireContext(),
-                    "Error jaringan: ${error.message}",
-                    Toast.LENGTH_LONG
-                ).show()
+                Log.e("BiodataError", error.toString())
+                showError("Gagal memuat data: ${error.message}")
             }
-        ) {
-            override fun getHeaders(): MutableMap<String, String> {
-                val headers = HashMap<String, String>()
-                headers["Accept"] = "application/json"
-                return headers
-            }
-        }
+        )
 
-        Volley.newRequestQueue(requireContext()).add(request)
+        Volley.newRequestQueue(requireContext()).add(stringRequest)
     }
 
-    private fun updateUIWithData(data: JSONObject) {
-        // Personal Data
-        tvNis.text = data.optString("nis", "-")
-        tvNama.text = data.optString("nama_lengkap", "-")
-        tvKelas.text = data.optString("kelas", "-")
-        tvJurusan.text = data.optString("jurusan", "-")
-        tvTempatLahir.text = data.optString("tempat_lahir", "-")
-        tvTanggalLahir.text = data.optString("tanggal_lahir", "-")
-        tvAlamatRumah.text = data.optString("alamat_rumah", "-")
-        tvNoHp.text = data.optString("no_hp", "-")
+    private fun handleResponse(response: String) {
+        try {
+            val jsonObject = JSONObject(response)
+            when (jsonObject.getString("status")) {
+                "success" -> displayBiodata(jsonObject.getJSONObject("data"))
+                else -> showError(jsonObject.getString("message"))
+            }
+        } catch (e: JSONException) {
+            showError("Gagal memproses data")
+            e.printStackTrace()
+        } finally {
+            progressBar.visibility = View.GONE
+        }
+    }
 
-        // PKL Data
-        tvTempatPkl.text = data.optString("tempat_pkl", "-")
-        tvAlamatPkl.text = data.optString("alamat_pkl", "-")
-        tvBidangKerja.text = data.optString("bidang_kerja", "-")
-        tvPembimbing.text = data.optString("pembimbing", "-")
-        tvMulaiPkl.text = data.optString("mulai_pkl", "-")
-        tvSelesaiPkl.text = data.optString("selesai_pkl", "-")
-        tvStatusPkl.text = data.optString("status_pkl", "-")
-        tvCatatanPkl.text = data.optString("catatan_pkl", "-")
+    private fun displayBiodata(data: JSONObject) {
+        try {
+            // Personal Data
+            tvNis.text = "NIS: ${data.optString("nis", "-")}"
+            tvNama.text = data.optString("nama_lengkap", "-")
+            tvKelas.text = "Kelas: ${data.optString("kelas", "-")}"
+            tvJurusan.text = "Jurusan: ${data.optString("jurusan", "-")}"
+            tvJenisKelamin.text = "Jenis Kelamin: ${data.optString("jenis_kelamin", "-")}"
+            tvTempatLahir.text = "Tempat Lahir: ${data.optString("tempat_lahir", "-")}"
+            tvTanggalLahir.text = "Tanggal Lahir: ${data.optString("tanggal_lahir", "-")}"
+            tvAlamat.text = "Alamat: ${data.optString("alamat_rumah", "-")}"
+            tvNoHp.text = "No. HP: ${data.optString("no_hp", "-")}"
+            tvEmail.text = "Email: ${data.optString("email", "-")}"
+            tvStatus.text = "Status: ${data.optString("status", "-")}"
+
+            // PKL Data
+            val tempatPkl = data.optString("tempat_pkl", "Belum ada")
+            tvTempatPkl.text = "Tempat PKL: $tempatPkl"
+            tvTempatPkl.visibility = if (tempatPkl == "Belum ada") View.GONE else View.VISIBLE
+
+            val alamatPkl = data.optString("alamat_pkl", "Belum ada")
+            tvAlamatPkl.text = "Alamat PKL: $alamatPkl"
+            tvAlamatPkl.visibility = if (alamatPkl == "Belum ada") View.GONE else View.VISIBLE
+
+            val bidangKerja = data.optString("bidang_kerja", "Belum ada")
+            tvBidangKerja.text = "Bidang Kerja: $bidangKerja"
+            tvBidangKerja.visibility = if (bidangKerja == "Belum ada") View.GONE else View.VISIBLE
+
+            val pembimbing = data.optString("pembimbing", "Belum ada")
+            tvPembimbing.text = "Pembimbing: $pembimbing"
+            tvPembimbing.visibility = if (pembimbing == "Belum ada") View.GONE else View.VISIBLE
+
+            val noHpPembimbing = data.optString("no_hp_pembimbing", "-")
+            tvNoHpPembimbing.text = "No. HP Pembimbing: $noHpPembimbing"
+            tvNoHpPembimbing.visibility = if (noHpPembimbing == "-") View.GONE else View.VISIBLE
+
+            val mulaiPkl = data.optString("mulai_pkl", "Belum ada")
+            tvMulaiPkl.text = "Mulai PKL: $mulaiPkl"
+            tvMulaiPkl.visibility = if (mulaiPkl == "Belum ada") View.GONE else View.VISIBLE
+
+            val selesaiPkl = data.optString("selesai_pkl", "Belum ada")
+            tvSelesaiPkl.text = "Selesai PKL: $selesaiPkl"
+            tvSelesaiPkl.visibility = if (selesaiPkl == "Belum ada") View.GONE else View.VISIBLE
+
+            val statusPkl = data.optString("status_pkl", "Belum PKL")
+            tvStatusPkl.text = "Status PKL: $statusPkl"
+            tvStatusPkl.visibility = if (statusPkl == "Belum PKL") View.GONE else View.VISIBLE
+
+            val catatanPkl = data.optString("catatan_pkl", "Belum ada")
+            tvCatatanPkl.text = "Catatan PKL: $catatanPkl"
+            tvCatatanPkl.visibility = if (catatanPkl == "Belum ada") View.GONE else View.VISIBLE
+
+            // Photo handling
+            try {
+                val fotoBase64 = data.getString("foto_base64")
+                if (fotoBase64.isNotEmpty()) {
+                    val imageBytes = Base64.decode(fotoBase64.split(",")[1], Base64.DEFAULT)
+                    val bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+                    fotoSiswa.setImageBitmap(bitmap)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                fotoSiswa.setImageResource(R.drawable.ic_person)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            showError("Gagal menampilkan data")
+        }
+    }
+
+    private fun showError(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+        progressBar.visibility = View.GONE
     }
 }

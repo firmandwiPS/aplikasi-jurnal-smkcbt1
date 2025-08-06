@@ -23,10 +23,10 @@ class UserAdminFragment : Fragment() {
     private var btnBack: ImageButton? = null
     private val adminList = mutableListOf<JSONObject>()
 
-    private val urlTampil = "http://192.168.1.13/backend-app-jurnalcbt1/admin_user/data_user/user_admin/tampil_data_user_admin.php"
-    private val urlTambah = "http://192.168.1.13/backend-app-jurnalcbt1/admin_user/data_user/user_admin/tambah_data_user_admin.php"
-    private val urlUbah = "http://192.168.1.13/backend-app-jurnalcbt1/admin_user/data_user/user_admin/ubah_data_user_admin.php"
-    private val urlHapus = "http://192.168.1.13/backend-app-jurnalcbt1/admin_user/data_user/user_admin/hapus_data_user_admin.php"
+    private val urlTampil = "http://192.168.130.91/backend-app-jurnalcbt1/admin_user/data_user/user_admin/tampil_data_user_admin.php"
+    private val urlTambah = "http://192.168.130.91/backend-app-jurnalcbt1/admin_user/data_user/user_admin/tambah_data_user_admin.php"
+    private val urlUbah = "http://192.168.130.91/backend-app-jurnalcbt1/admin_user/data_user/user_admin/ubah_data_user_admin.php"
+    private val urlHapus = "http://192.168.130.91/backend-app-jurnalcbt1/admin_user/data_user/user_admin/hapus_data_user_admin.php"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

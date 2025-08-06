@@ -1,370 +1,281 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/scrollView"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:scrollbars="vertical"
+    android:fadeScrollbars="true"
+    android:scrollbarStyle="outsideInset"
+    android:overScrollMode="ifContentScrolls">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <!-- Profile Header Section -->
-        <com.google.android.material.card.MaterialCardView
+        <!-- Progress Bar -->
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+        <!-- Card Biodata -->
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp"
-            app:strokeColor="@color/light_gray"
-            app:strokeWidth="1dp">
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="16dp"
-                android:background="@color/white">
+                android:orientation="vertical"
+                android:padding="16dp">
 
-                <ImageView
-                    android:id="@+id/imgProfile"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/ic_profile_placeholder"
-                    android:contentDescription="Profile image"
-                    android:layout_marginEnd="16dp"
-                    android:scaleType="centerCrop"
-                    android:background="@drawable/circle_bg"/>
-
+                <!-- Header with Photo -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_gravity="center_vertical">
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/ivFotoSiswa"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:contentDescription="Foto Siswa"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_person"
+                        android:layout_marginBottom="8dp" />
 
                     <TextView
                         android:id="@+id/tvNama"
-                        android:layout_width="match_parent"
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:textColor="@color/oren"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="4dp"/>
+                        android:text="Nama Siswa"
+                        android:textAlignment="center" />
 
                     <TextView
                         android:id="@+id/tvNis"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="NIS: -"
+                        android:textAlignment="center" />
+
+                    <!-- Button Container -->
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:textColor="@color/secondary_text"
-                        android:layout_marginBottom="4dp"/>
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <Button
+                            android:id="@+id/btnEdit"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="8dp"
+                            android:text="Ubah"
+                            android:backgroundTint="@color/colorPrimary"
+                            android:textColor="@android:color/white" />
+
+                        <Button
+                            android:id="@+id/btnLogout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Logout"
+                            android:backgroundTint="@color/hapus"
+                            android:textColor="@android:color/white" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="16dp"
+                    android:background="?android:attr/listDivider" />
+
+                <!-- Biodata Details -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/tvKelas"
-                        android:layout_width="match_parent"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:textColor="@color/secondary_text"/>
+                        android:text="Kelas: -" />
 
                     <TextView
                         android:id="@+id/tvJurusan"
-                        android:layout_width="match_parent"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:textColor="@color/secondary_text"/>
-                </LinearLayout>
-            </LinearLayout>
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fabEdit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|top"
-                android:layout_margin="16dp"
-                android:src="@drawable/ic_edit"
-                app:backgroundTint="@color/oren"
-                app:tint="@color/white"
-                app:elevation="8dp"/>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Toggle Buttons -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/bg_rounded_toggle"
-            android:padding="4dp">
-
-            <Button
-                android:id="@+id/btnBiodata"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:text="Biodata"
-                android:textAllCaps="false"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                app:cornerRadius="8dp"/>
-
-            <Button
-                android:id="@+id/btnPkl"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:text="Data PKL"
-                android:textAllCaps="false"
-                android:layout_marginStart="4dp"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                app:cornerRadius="8dp"/>
-        </LinearLayout>
-
-        <!-- Biodata Section -->
-        <LinearLayout
-            android:id="@+id/layoutBiodata"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="24dp">
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="2dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp"
-                    android:background="@color/white">
+                        android:text="Jurusan: -" />
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:id="@+id/tvJenisKelamin"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Informasi Pribadi"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-                        android:textColor="@color/oren"
-                        android:layout_marginBottom="16dp"/>
+                        android:text="Jenis Kelamin: -" />
 
-                    <!-- Tempat Lahir -->
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Tempat Lahir"
-                        android:textColor="@color/secondary_text"
-                        android:textSize="12sp"/>
                     <TextView
                         android:id="@+id/tvTempatLahir"
-                        android:layout_width="match_parent"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="12dp"/>
+                        android:text="Tempat Lahir: -" />
 
-                    <!-- Tanggal Lahir -->
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Tanggal Lahir"
-                        android:textColor="@color/secondary_text"
-                        android:textSize="12sp"/>
                     <TextView
                         android:id="@+id/tvTanggalLahir"
-                        android:layout_width="match_parent"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="12dp"/>
+                        android:text="Tanggal Lahir: -" />
 
-                    <!-- Alamat Rumah -->
                     <TextView
-                        android:layout_width="match_parent"
+                        android:id="@+id/tvAlamat"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Alamat Rumah"
-                        android:textColor="@color/secondary_text"
-                        android:textSize="12sp"/>
-                    <TextView
-                        android:id="@+id/tvAlamatRumah"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="12dp"/>
+                        android:text="Alamat: -" />
 
-                    <!-- No. HP -->
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="No. HP"
-                        android:textColor="@color/secondary_text"
-                        android:textSize="12sp"/>
                     <TextView
                         android:id="@+id/tvNoHp"
-                        android:layout_width="match_parent"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:layout_marginTop="4dp"/>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-        </LinearLayout>
+                        android:text="No. HP: -" />
 
-        <!-- PKL Section -->
-        <LinearLayout
-            android:id="@+id/layoutPkl"
+                    <TextView
+                        android:id="@+id/tvEmail"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Email: -" />
+
+                    <TextView
+                        android:id="@+id/tvStatus"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Status: -" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Card PKL Info -->
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="24dp"
-            android:visibility="gone">
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp">
 
-            <com.google.android.material.card.MaterialCardView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="2dp">
+                android:orientation="vertical"
+                android:padding="16dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp"
-                    android:background="@color/white">
+                    android:text="Informasi PKL"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Informasi PKL"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-                        android:textColor="@color/oren"
-                        android:layout_marginBottom="16dp"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="8dp"
+                    android:background="?android:attr/listDivider" />
 
-                    <!-- Tempat PKL -->
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Tempat PKL"
-                        android:textColor="@color/secondary_text"
-                        android:textSize="12sp"/>
-                    <TextView
-                        android:id="@+id/tvTempatPkl"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="12dp"/>
+                <TextView
+                    android:id="@+id/tvTempatPkl"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tempat PKL: Belum ada" />
 
-                    <!-- Alamat PKL -->
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Alamat PKL"
-                        android:textColor="@color/secondary_text"
-                        android:textSize="12sp"/>
-                    <TextView
-                        android:id="@+id/tvAlamatPkl"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="12dp"/>
+                <TextView
+                    android:id="@+id/tvAlamatPkl"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Alamat PKL: Belum ada" />
 
-                    <!-- Bidang Kerja -->
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Bidang Kerja"
-                        android:textColor="@color/secondary_text"
-                        android:textSize="12sp"/>
-                    <TextView
-                        android:id="@+id/tvBidangKerja"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="12dp"/>
+                <TextView
+                    android:id="@+id/tvBidangKerja"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bidang Kerja: Belum ada" />
 
-                    <!-- Pembimbing -->
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Pembimbing"
-                        android:textColor="@color/secondary_text"
-                        android:textSize="12sp"/>
-                    <TextView
-                        android:id="@+id/tvPembimbing"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="12dp"/>
+                <TextView
+                    android:id="@+id/tvPembimbing"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pembimbing: Belum ada" />
 
-                    <!-- Mulai PKL -->
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Mulai PKL"
-                        android:textColor="@color/secondary_text"
-                        android:textSize="12sp"/>
-                    <TextView
-                        android:id="@+id/tvMulaiPkl"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="12dp"/>
+                <TextView
+                    android:id="@+id/tvNoHpPembimbing"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No. HP Pembimbing: -" />
 
-                    <!-- Selesai PKL -->
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Selesai PKL"
-                        android:textColor="@color/secondary_text"
-                        android:textSize="12sp"/>
-                    <TextView
-                        android:id="@+id/tvSelesaiPkl"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="12dp"/>
+                <TextView
+                    android:id="@+id/tvMulaiPkl"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mulai PKL: Belum ada" />
 
-                    <!-- Status PKL -->
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Status PKL"
-                        android:textColor="@color/secondary_text"
-                        android:textSize="12sp"/>
-                    <TextView
-                        android:id="@+id/tvStatusPkl"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="12dp"/>
+                <TextView
+                    android:id="@+id/tvSelesaiPkl"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Selesai PKL: Belum ada" />
 
-                    <!-- Catatan PKL -->
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Catatan PKL"
-                        android:textColor="@color/secondary_text"
-                        android:textSize="12sp"/>
-                    <TextView
-                        android:id="@+id/tvCatatanPkl"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:layout_marginTop="4dp"/>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+                <TextView
+                    android:id="@+id/tvStatusPkl"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Status PKL: Belum PKL" />
+
+                <TextView
+                    android:id="@+id/tvCatatanPkl"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Catatan PKL: Belum ada" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Footer -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            android:padding="6dp">
+
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
