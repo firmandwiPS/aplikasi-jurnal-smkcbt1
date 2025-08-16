@@ -4,146 +4,135 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/bg_gradient"
-    android:gravity="top"
-    >
+    android:background="@android:color/white">
 
-    <!-- Header -->
+    <!-- Header Section (Reduced height) -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.6"
-        android:orientation="vertical"
+        android:layout_height="557dp"
         android:gravity="center"
-        android:padding="4dp">
+        android:orientation="vertical"
+        android:paddingTop="20dp">
 
+        <!-- School Logo -->
         <ImageView
-            android:id="@+id/logoSekolah"
-            android:layout_width="196dp"
-            android:layout_height="186dp"
-            android:layout_marginBottom="12dp"
-            android:background="@drawable/circle_white"
+            android:id="@+id/logo_sekolah"
+            android:layout_width="277dp"
+            android:layout_height="258dp"
             android:contentDescription="Logo Sekolah"
-            android:padding="16dp"
-            android:src="@drawable/logo" />
+            android:src="@drawable/logosmk" />
 
+        <!-- School Name -->
         <TextView
-            android:id="@+id/namaSekolah"
+            android:id="@+id/tv_school_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:letterSpacing="0.1"
+            android:layout_marginBottom="60dp"
             android:text="SMK PK CIBITUNG 1"
-            android:textColor="@android:color/white"
-            android:textSize="33dp"
-            android:textStyle="bold"
-            />
+            android:textColor="#FFA500"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="80dp"
+            android:text="Selamat Datang!"
+            android:textColor="#1A3D63"
+            android:textSize="48sp"
+            android:textStyle="bold" />
+
+        <!-- App Name -->
+        <TextView
+            android:id="@+id/tv_app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="9dp"
+            android:text="Di Jurnal PKL SMK PK Cibitung 1"
+            android:textColor="@color/oren"
+            android:textSize="18sp" />
     </LinearLayout>
 
-    <!-- Body Login -->
+    <!-- Login Section (Full width, no rounded corners) -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:background="@drawable/border_bg_login"
         android:orientation="vertical"
-        android:padding="24dp"
-        android:gravity="center">
+        android:padding="20dp">
 
-        <androidx.cardview.widget.CardView
+        <!-- Login Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textColor="@color/oren"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <!-- Access Key Input -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/keyakses_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="6dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
-            android:radius="16dp"
-            app:cardBackgroundColor="@android:color/white">
+            android:layout_marginTop="20dp"
+            android:hint="Key Akses"
+            android:textColorHint="@color/oren"
+            app:boxStrokeColor="@color/oren"
+            app:endIconMode="password_toggle"
+            app:endIconTint="@color/oren"
+            app:errorEnabled="true"
+            app:hintTextColor="@color/oren">
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/keyakses"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="24dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Selamat Datang PKL!"
-                    android:textColor="#FF5722"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="4dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Silakan login menggunakan akses key"
-                    android:textColor="#757575"
-                    android:textSize="14sp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="16dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Jadilah yang terbaik di tempat PKL-mu,\nkarena di sanalah masa depanmu dimulai."
-                    android:textColor="#009688"
-                    android:textSize="13sp"
-                    android:textStyle="italic"
-                    android:gravity="center"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="20dp" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/keyakses_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Akses Key"
-                    app:endIconMode="password_toggle"
-                    app:errorEnabled="true"
-                    android:textColorHint="@color/black"
-                app:boxStrokeColor="@color/black"
-                app:hintTextColor="@color/black"
-                    app:endIconTint="@color/black"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/keyakses"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                android:textColorHint="@color/black"
                 android:inputType="textPassword"
-                android:textSize="16sp"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                android:textColor="@color/oren"
+                android:textColorHint="@color/oren"
+                android:textSize="16sp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Login Button -->
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnLogin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Masuk"
-                    android:textStyle="bold"
-                    android:textAllCaps="false"
-                    android:layout_marginTop="24dp"
-                    android:icon="@android:drawable/ic_menu_send"
-                    app:iconPadding="8dp"
-                    app:cornerRadius="12dp"
-                    android:backgroundTint="@color/oren"
-                    android:textColor="@android:color/white" />
+        <!-- Login Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/oren"
+            android:text="MASUK"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            app:cornerRadius="8dp" />
 
-                <!-- Tanggal -->
-                <TextView
-                    android:id="@+id/tanggalSekarang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tanggal"
-                    android:textColor="#333333"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="24dp"
-                    android:layout_gravity="center_horizontal" />
+        <!-- Current Date -->
+        <TextView
+            android:id="@+id/tanggalSekarang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:text="Tangggal"
+            android:textColor="@color/oren"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+        <!-- School Name Bottom -->
+        <TextView
+            android:id="@+id/smkcbt1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="78dp"
+            android:text="SMK PK Cibitung 1"
+            android:textColor="@color/oren"
+            android:textSize="20sp"
+            android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>

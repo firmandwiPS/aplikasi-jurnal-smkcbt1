@@ -22,10 +22,10 @@ class UserSiswaFragment : Fragment() {
     private lateinit var fabAdd: FloatingActionButton
     private val siswaList = mutableListOf<JSONObject>()
 
-    private val urlTampil = "http://192.168.130.91/backend-app-jurnalcbt1/admin_user/data_user/user_siswa/tampil_data_user_siswa.php"
-    private val urlTambah = "http://192.168.130.91/backend-app-jurnalcbt1/admin_user/data_user/user_siswa/tambah_data_user_siswa.php"
-    private val urlUbah = "http://192.168.130.91/backend-app-jurnalcbt1/admin_user/data_user/user_siswa/ubah_data_user_siswa.php"
-    private val urlHapus = "http://192.168.130.91/backend-app-jurnalcbt1/admin_user/data_user/user_siswa/hapus_data_user_siswa.php"
+    private val urlTampil = "http://192.168.1.103/backend-app-jurnalcbt1/admin_user/data_user/user_siswa/tampil_data_user_siswa.php"
+    private val urlTambah = "http://192.168.1.103/backend-app-jurnalcbt1/admin_user/data_user/user_siswa/tambah_data_user_siswa.php"
+    private val urlUbah = "http://192.168.1.103/backend-app-jurnalcbt1/admin_user/data_user/user_siswa/ubah_data_user_siswa.php"
+    private val urlHapus = "http://192.168.1.103/backend-app-jurnalcbt1/admin_user/data_user/user_siswa/hapus_data_user_siswa.php"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

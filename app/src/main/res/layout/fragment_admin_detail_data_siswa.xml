@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <!-- Foto Siswa -->
+        <ImageView
+            android:id="@+id/imgFotoDetail"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginBottom="16dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_person"
+            android:background="@drawable/circle_background"
+            android:padding="4dp" />
+
+        <!-- NIS -->
+        <TextView
+            android:id="@+id/txtNisDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NIS: 123456"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Nama Lengkap -->
+        <TextView
+            android:id="@+id/txtNamaDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama Lengkap Siswa"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Data Biodata Siswa -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Biodata Siswa"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/txtJenisKelaminDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jenis Kelamin: Laki-laki" />
+
+        <TextView
+            android:id="@+id/txtKelasDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kelas: XII RPL 1" />
+
+        <TextView
+            android:id="@+id/txtJurusanDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jurusan: Rekayasa Perangkat Lunak"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Data PKL -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Data PKL"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/txtTempatPklDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tempat PKL: PT Maju Jaya" />
+
+        <TextView
+            android:id="@+id/txtMulaiPklDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mulai PKL: 2025-01-01" />
+
+        <TextView
+            android:id="@+id/txtSelesaiPklDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Selesai PKL: 2025-06-01"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Data Pembimbing -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Data Pembimbing"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/txtPembimbingPerusahaanDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pembimbing Perusahaan: Budi Santoso" />
+
+        <TextView
+            android:id="@+id/txtNoHpPembimbingPerusahaanDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No HP Pembimbing Perusahaan: 081234567890" />
+
+        <TextView
+            android:id="@+id/txtPembimbingSekolahDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pembimbing Sekolah: Siti Aminah" />
+
+        <TextView
+            android:id="@+id/txtNoHpPembimbingSekolahDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No HP Pembimbing Sekolah: 081987654321"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Tombol Kembali -->
+        <Button
+            android:id="@+id/btnKembaliDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kembali" />
+
+    </LinearLayout>
+</ScrollView>

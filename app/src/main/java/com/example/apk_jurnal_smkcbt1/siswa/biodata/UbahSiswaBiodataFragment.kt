@@ -16,7 +16,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
@@ -74,8 +73,8 @@ class UbahSiswaBiodataFragment : Fragment() {
     private var fotoBase64: String = ""
     private var isPhotoChanged = false
     private val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
-    private val UPDATE_URL = "http://192.168.130.91/backend-app-jurnalcbt1/siswa_user/biodata_siswa/ubah_biodata_user_siswa.php"
-    private val BIODATA_URL = "http://192.168.130.91/backend-app-jurnalcbt1/siswa_user/biodata_siswa/biodata_user_siswa.php"
+    private val UPDATE_URL = "http://192.168.1.103/backend-app-jurnalcbt1/siswa_user/biodata_siswa/ubah_biodata_user_siswa.php"
+    private val BIODATA_URL = "http://192.168.1.103/backend-app-jurnalcbt1/siswa_user/biodata_siswa/biodata_user_siswa.php"
 
     private val galleryLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -151,8 +150,9 @@ class UbahSiswaBiodataFragment : Fragment() {
 
     private fun setupDatePickers() {
         val dateListener = DatePickerDialog.OnDateSetListener { _, year, month, day ->
-            val calendar = Calendar.getInstance()
-            calendar.set(year, month, day)
+            val calendar = Calendar.getInstance().apply {
+                set(year, month, day)
+            }
             val dateString = dateFormat.format(calendar.time)
 
             when {
@@ -162,15 +162,53 @@ class UbahSiswaBiodataFragment : Fragment() {
             }
         }
 
-        etTanggalLahir.setOnClickListener {
-            showDatePicker(dateListener, etTanggalLahir.text.toString())
+        val dateClickListener = View.OnClickListener { view ->
+            val currentField = when (view.id) {
+                R.id.etTanggalLahir -> etTanggalLahir
+                R.id.etMulaiPkl -> etMulaiPkl
+                R.id.etSelesaiPkl -> etSelesaiPkl
+                else -> null
+            }
+
+            currentField?.let { field ->
+                val currentDate = field.text?.toString()
+                showDatePicker(dateListener, currentDate)
+            }
         }
-        etMulaiPkl.setOnClickListener {
-            showDatePicker(dateListener, etMulaiPkl.text.toString())
+
+        etTanggalLahir.setOnClickListener(dateClickListener)
+        etMulaiPkl.setOnClickListener(dateClickListener)
+        etSelesaiPkl.setOnClickListener(dateClickListener)
+
+        // Make sure the fields can't be edited manually
+        etTanggalLahir.keyListener = null
+        etMulaiPkl.keyListener = null
+        etSelesaiPkl.keyListener = null
+    }
+
+    private fun showDatePicker(listener: DatePickerDialog.OnDateSetListener, currentDate: String?) {
+        val calendar = Calendar.getInstance()
+
+        try {
+            if (!currentDate.isNullOrEmpty()) {
+                val parsedDate = dateFormat.parse(currentDate)
+                parsedDate?.let {
+                    calendar.time = it
+                }
+            }
+        } catch (e: Exception) {
+            Log.e("DateParse", "Error parsing date", e)
+            // If parsing fails, use today's date
+            calendar.timeInMillis = System.currentTimeMillis()
         }
-        etSelesaiPkl.setOnClickListener {
-            showDatePicker(dateListener, etSelesaiPkl.text.toString())
-        }
+
+        DatePickerDialog(
+            requireContext(),
+            listener,
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        ).show()
     }
 
     private fun setupDropdowns() {
@@ -197,6 +235,11 @@ class UbahSiswaBiodataFragment : Fragment() {
                 etStatusPkl.setText(selected)
             }
         }
+
+        // Make sure dropdown fields can't be edited manually
+        etJenisKelamin.keyListener = null
+        etStatus.keyListener = null
+        etStatusPkl.keyListener = null
     }
 
     private fun showSingleChoiceDialog(title: String, options: Array<String>, onSelected: (String) -> Unit) {
@@ -207,29 +250,6 @@ class UbahSiswaBiodataFragment : Fragment() {
             }
             .create()
             .show()
-    }
-
-    private fun showDatePicker(listener: DatePickerDialog.OnDateSetListener, currentDate: String?) {
-        val calendar = Calendar.getInstance()
-
-        try {
-            if (!currentDate.isNullOrEmpty()) {
-                val parsedDate = dateFormat.parse(currentDate)
-                parsedDate?.let {
-                    calendar.time = it
-                }
-            }
-        } catch (e: Exception) {
-            Log.e("DateParse", "Error parsing date", e)
-        }
-
-        DatePickerDialog(
-            requireContext(),
-            listener,
-            calendar.get(Calendar.YEAR),
-            calendar.get(Calendar.MONTH),
-            calendar.get(Calendar.DAY_OF_MONTH)
-        ).show()
     }
 
     private fun setupButtons() {

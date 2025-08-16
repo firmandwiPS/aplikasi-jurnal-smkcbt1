@@ -1,0 +1,107 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/edtNis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="NIS"
+            android:enabled="false" />
+
+        <EditText
+            android:id="@+id/edtNamaLengkap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nama Lengkap" />
+
+        <EditText
+            android:id="@+id/edtJenisKelamin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Jenis Kelamin" />
+
+        <EditText
+            android:id="@+id/edtKelas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Kelas" />
+
+        <EditText
+            android:id="@+id/edtJurusan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Jurusan" />
+
+        <EditText
+            android:id="@+id/edtTempatPkl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tempat PKL" />
+
+        <EditText
+            android:id="@+id/edtMulaiPkl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mulai PKL (YYYY-MM-DD)" />
+
+        <EditText
+            android:id="@+id/edtSelesaiPkl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Selesai PKL (YYYY-MM-DD)" />
+
+        <EditText
+            android:id="@+id/edtPembimbingPerusahaan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Pembimbing Perusahaan" />
+
+        <EditText
+            android:id="@+id/edtNoHpPembimbingPerusahaan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="No HP Pembimbing Perusahaan"
+            android:inputType="phone" />
+
+        <EditText
+            android:id="@+id/edtPembimbingSekolah"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Pembimbing Sekolah" />
+
+        <EditText
+            android:id="@+id/edtNoHpPembimbingSekolah"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="No HP Pembimbing Sekolah"
+            android:inputType="phone" />
+
+        <ImageView
+            android:id="@+id/imgFoto"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher" />
+
+        <Button
+            android:id="@+id/btnPilihFoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pilih Foto" />
+
+        <Button
+            android:id="@+id/btnSimpan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Simpan Perubahan" />
+
+    </LinearLayout>
+</ScrollView>

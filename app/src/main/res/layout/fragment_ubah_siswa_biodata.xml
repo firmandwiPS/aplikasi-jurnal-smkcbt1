@@ -4,14 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:padding="16dp"
-    android:clipToPadding="false">
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:focusableInTouchMode="true">
+        android:background="@color/white"
+        android:orientation="vertical">
 
         <!-- Progress Bar -->
         <ProgressBar
@@ -20,8 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:visibility="gone"
-            android:indeterminateTint="@color/colorPrimary" />
+            android:visibility="gone" />
 
         <!-- Card Biodata -->
         <com.google.android.material.card.MaterialCardView
@@ -29,23 +27,24 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="4dp"
-            app:cardBackgroundColor="@android:color/white">
+
+            app:cardElevation="4dp">
 
             <LinearLayout
+                android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="16dp">
 
+                <!-- Header -->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Edit Biodata"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                    android:textColor="@color/colorPrimary"
-                    android:layout_marginBottom="16dp"
-                    android:textStyle="bold" />
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="16dp" />
 
                 <!-- Photo and NIS -->
                 <LinearLayout
@@ -59,11 +58,9 @@
                         android:id="@+id/ivFotoSiswa"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:contentDescription="Foto Siswa"
-                        android:scaleType="centerCrop"
                         android:src="@drawable/ic_person"
-                        android:background="@drawable/circle_background"
-                        android:padding="4dp" />
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/circle_background" />
 
                     <TextView
                         android:id="@+id/tvNis"
@@ -71,37 +68,30 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:text="NIS: -"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                        android:textColor="@android:color/black" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <!-- Nama -->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilNama"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxStrokeColor="@color/colorPrimary"
-                    app:hintTextColor="@color/colorPrimary">
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etNama"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Nama Lengkap"
-                        android:inputType="textPersonName"
-                        android:textColor="@android:color/black" />
+                        android:inputType="textPersonName" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Jenis Kelamin -->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilJenisKelamin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxStrokeColor="@color/colorPrimary">
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etJenisKelamin"
@@ -109,144 +99,123 @@
                         android:layout_height="wrap_content"
                         android:hint="Jenis Kelamin (L/P)"
                         android:inputType="text"
-                        android:textColor="@android:color/black" />
+                        android:focusable="false"
+                        android:clickable="true" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Kelas -->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilKelas"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxStrokeColor="@color/colorPrimary">
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etKelas"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Kelas"
-                        android:inputType="text"
-                        android:textColor="@android:color/black" />
+                        android:inputType="text" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Jurusan -->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilJurusan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxStrokeColor="@color/colorPrimary">
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etJurusan"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Jurusan"
-                        android:inputType="text"
-                        android:textColor="@android:color/black" />
+                        android:inputType="text" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Tempat Lahir -->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilTempatLahir"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxStrokeColor="@color/colorPrimary">
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etTempatLahir"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Tempat Lahir"
-                        android:inputType="text"
-                        android:textColor="@android:color/black" />
+                        android:inputType="text" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Tanggal Lahir -->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilTanggalLahir"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxStrokeColor="@color/colorPrimary">
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etTanggalLahir"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Tanggal Lahir (dd-mm-yyyy)"
-                        android:inputType="date"
+                        android:inputType="none"
                         android:focusable="false"
-                        android:textColor="@android:color/black" />
+                        android:clickable="true" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Alamat -->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilAlamat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxStrokeColor="@color/colorPrimary">
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etAlamat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Alamat Rumah"
-                        android:inputType="textMultiLine"
-                        android:textColor="@android:color/black" />
+                        android:inputType="textMultiLine" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- No HP -->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilNoHp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxStrokeColor="@color/colorPrimary">
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etNoHp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="No. HP"
-                        android:inputType="phone"
-                        android:textColor="@android:color/black" />
+                        android:inputType="phone" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Email -->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxStrokeColor="@color/colorPrimary">
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Email"
-                        android:inputType="textEmailAddress"
-                        android:textColor="@android:color/black" />
+                        android:inputType="textEmailAddress" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Status -->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilStatus"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxStrokeColor="@color/colorPrimary">
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etStatus"
@@ -254,7 +223,8 @@
                         android:layout_height="wrap_content"
                         android:hint="Status (aktif/tidak aktif)"
                         android:inputType="text"
-                        android:textColor="@android:color/black" />
+                        android:focusable="false"
+                        android:clickable="true" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Photo Upload -->
@@ -263,11 +233,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Ubah Foto"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:textColor="@android:color/white"
-                    android:textAllCaps="false"
-                    android:drawablePadding="8dp" />
+                    android:text="Ubah Foto" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -276,10 +242,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="8dp"
-            app:cardElevation="4dp"
-            app:cardBackgroundColor="@android:color/white">
+            app:cardElevation="4dp">
 
             <LinearLayout
+                android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -289,147 +255,125 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Edit Data PKL"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                    android:textColor="@color/colorPrimary"
-                    android:layout_marginBottom="16dp"
-                    android:textStyle="bold" />
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="16dp" />
 
                 <!-- Tempat PKL -->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilTempatPkl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxStrokeColor="@color/colorPrimary">
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etTempatPkl"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Tempat PKL"
-                        android:inputType="text"
-                        android:textColor="@android:color/black" />
+                        android:inputType="text" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Alamat PKL -->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilAlamatPkl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxStrokeColor="@color/colorPrimary">
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etAlamatPkl"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Alamat PKL"
-                        android:inputType="textMultiLine"
-                        android:textColor="@android:color/black" />
+                        android:inputType="textMultiLine" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Bidang Kerja -->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilBidangKerja"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxStrokeColor="@color/colorPrimary">
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etBidangKerja"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Bidang Kerja"
-                        android:inputType="text"
-                        android:textColor="@android:color/black" />
+                        android:inputType="text" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Pembimbing -->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilPembimbing"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxStrokeColor="@color/colorPrimary">
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etPembimbing"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Pembimbing"
-                        android:inputType="textPersonName"
-                        android:textColor="@android:color/black" />
+                        android:inputType="textPersonName" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- No HP Pembimbing -->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilNoHpPembimbing"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxStrokeColor="@color/colorPrimary">
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etNoHpPembimbing"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="No. HP Pembimbing"
-                        android:inputType="phone"
-                        android:textColor="@android:color/black" />
+                        android:inputType="phone" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Mulai PKL -->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilMulaiPkl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxStrokeColor="@color/colorPrimary">
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etMulaiPkl"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Mulai PKL (dd-mm-yyyy)"
-                        android:inputType="date"
+                        android:inputType="none"
                         android:focusable="false"
-                        android:textColor="@android:color/black" />
+                        android:clickable="true" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Selesai PKL -->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilSelesaiPkl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxStrokeColor="@color/colorPrimary">
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etSelesaiPkl"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Selesai PKL (dd-mm-yyyy)"
-                        android:inputType="date"
+                        android:inputType="none"
                         android:focusable="false"
-                        android:textColor="@android:color/black" />
+                        android:clickable="true" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Status PKL -->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilStatusPkl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxStrokeColor="@color/colorPrimary">
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etStatusPkl"
@@ -437,25 +381,23 @@
                         android:layout_height="wrap_content"
                         android:hint="Status PKL (berjalan/selesai)"
                         android:inputType="text"
-                        android:textColor="@android:color/black" />
+                        android:focusable="false"
+                        android:clickable="true" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Catatan PKL -->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilCatatanPkl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxStrokeColor="@color/colorPrimary">
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etCatatanPkl"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Catatan PKL"
-                        android:inputType="textMultiLine"
-                        android:textColor="@android:color/black" />
+                        android:inputType="textMultiLine" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -466,8 +408,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="16dp"
-            android:gravity="center_horizontal"
-            android:padding="8dp">
+            android:gravity="center_horizontal">
 
             <Button
                 android:id="@+id/btnBatal"
@@ -475,10 +416,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginEnd="8dp"
-                android:text="Batal"
-                android:backgroundTint="#F44336"
-                android:textColor="@android:color/white"
-                android:textAllCaps="false" />
+                android:text="Batal" />
 
             <Button
                 android:id="@+id/btnSimpan"
@@ -486,10 +424,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginStart="8dp"
-                android:text="Simpan"
-                android:backgroundTint="#4CAF50"
-                android:textColor="@android:color/white"
-                android:textAllCaps="false" />
+                android:text="Simpan" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

@@ -124,7 +124,7 @@ class SiswaBiodataFragment : Fragment() {
             return
         }
 
-        val url = "http://192.168.130.91/backend-app-jurnalcbt1/siswa_user/biodata_siswa/biodata_user_siswa.php?nis=$nis"
+        val url = "http://192.168.1.103/backend-app-jurnalcbt1/siswa_user/biodata_siswa/biodata_user_siswa.php?nis=$nis"
 
         val stringRequest = StringRequest(
             Request.Method.GET, url,

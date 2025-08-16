@@ -8,11 +8,11 @@
     tools:context=".layout_navigasi.SiswaActivity">
 
     <!-- Header -->
-    <include
-        layout="@layout/nav_header"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_gravity="top" />
+<!--    <include-->
+<!--        layout="@layout/nav_header"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="80dp"-->
+<!--        android:layout_gravity="top" />-->
 
     <!-- Fragment container -->
     <FrameLayout

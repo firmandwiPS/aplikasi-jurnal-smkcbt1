@@ -1,14 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".admin.AdminDataSiswaFragment">
+    android:orientation="vertical"
+    android:padding="16dp">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- Judul Halaman -->
     <TextView
+        android:id="@+id/tv_judul"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:text="Manajemen Data Siswa"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:paddingBottom="24dp" />
 
-</FrameLayout>
+
+
+
+    <!-- Tombol tambah siswa -->
+    <Button
+        android:id="@+id/btnTambahSiswa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tambah Siswa"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="@color/oren"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+
+    <!-- RecyclerView untuk daftar siswa -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewSiswa"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingBottom="8dp" />
+
+</LinearLayout>

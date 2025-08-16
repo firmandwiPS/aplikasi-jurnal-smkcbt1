@@ -49,7 +49,7 @@
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:layout_gravity="center"
-            android:src="@drawable/logo"
+            android:src="@drawable/logosmk"
             android:contentDescription="Logo SMK" />
     </LinearLayout>
 </RelativeLayout>
