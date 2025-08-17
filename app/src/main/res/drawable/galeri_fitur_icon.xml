@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- BINGKAI FOTO -->
+    <path
+        android:fillColor="#7E57C2"
+        android:pathData="M3,4H21C21.55,4 22,4.45 22,5V19C22,19.55 21.55,20 21,20H3C2.45,20 2,19.55 2,19V5C2,4.45 2.45,4 3,4Z"/>
+
+    <!-- BACKGROUND LANGIT (lebih besar & sedikit turun) -->
+    <path
+        android:fillColor="#BBDEFB"
+        android:pathData="M4,6H20V19H4V6Z"/>
+
+    <!-- MATAHARI (lebih besar & turun sedikit) -->
+    <path
+        android:fillColor="#FFEB3B"
+        android:pathData="M8,10a2.3,2.3 0 1,0 4.6,0a2.3,2.3 0 1,0 -4.6,0Z"/>
+
+    <!-- GUNUNG BELAKANG (turun sedikit) -->
+    <path
+        android:fillColor="#9575CD"
+        android:pathData="M6,19l4.2,-4.5 2,2 3,-3 4,6H6Z"/>
+
+    <!-- GUNUNG DEPAN (turun & melebar sedikit) -->
+    <path
+        android:fillColor="#512DA8"
+        android:pathData="M4.5,19l5.5,-3.5 6,3.5H4.5Z"/>
+
+    <!-- OUTLINE TIPIS DALAM -->
+    <path
+        android:strokeColor="#5E35B1"
+        android:strokeWidth="0.6"
+        android:fillColor="@android:color/transparent"
+        android:pathData="M4,6H20V19H4V6Z"/>
+</vector>

@@ -1,0 +1,46 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Cover kiri buku -->
+    <path
+        android:fillColor="#1976D2"
+        android:pathData="M3,4C3,3.45 3.45,3 4,3H11C12.5,3 14,4 14,6V20C14,22 12.5,23 11,23H4C3.45,23 3,22.55 3,22V4Z"/>
+
+    <!-- Cover kanan buku -->
+    <path
+        android:fillColor="#1565C0"
+        android:pathData="M21,4V22C21,22.55 20.55,23 20,23H13C11.5,23 10,22 10,20V6C10,4 11.5,3 13,3H20C20.55,3 21,3.45 21,4Z"/>
+
+    <!-- Tulang punggung -->
+    <path
+        android:fillColor="#0D47A1"
+        android:pathData="M12,3V23H13V3H12Z"/>
+
+    <!-- Garis halaman -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M5,8H10V9.5H5V8Z"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M5,12H10V13.5H5V12Z"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M5,16H10V17.5H5V16Z"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M14,8H19V9.5H14V8Z"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M14,12H19V13.5H14V12Z"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M14,16H19V17.5H14V16Z"/>
+
+    <!-- Bintang kecil di kanan atas (simbol kegiatan/spesial) -->
+    <path
+        android:fillColor="#FFC107"
+        android:pathData="M18,2l0.7,1.4 1.6,0.2 -1.2,1.1 0.3,1.6 -1.4,-0.7 -1.4,0.7 0.3,-1.6 -1.2,-1.1 1.6,-0.2z"/>
+</vector>

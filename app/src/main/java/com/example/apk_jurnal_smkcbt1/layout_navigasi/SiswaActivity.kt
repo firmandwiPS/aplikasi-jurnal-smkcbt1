@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.apk_jurnal_smkcbt1.R
 import com.example.apk_jurnal_smkcbt1.siswa.*
+import com.example.apk_jurnal_smkcbt1.siswa.beranda.SiswaBerandaFragment
 import com.example.apk_jurnal_smkcbt1.siswa.biodata.SiswaBiodataFragment
+import com.example.apk_jurnal_smkcbt1.siswa.prasensi.SiswaPrasensiFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class SiswaActivity : AppCompatActivity() {
@@ -20,18 +22,18 @@ class SiswaActivity : AppCompatActivity() {
 
         // Default fragment saat dibuka
         if (savedInstanceState == null) {
-            loadFragment(SiswaDashboardFragment())
+            loadFragment(SiswaBerandaFragment())
             bottomNavView.selectedItemId = R.id.nav_dashboard
         }
 
         bottomNavView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_dashboard -> {
-                    loadFragment(SiswaDashboardFragment())
+                    loadFragment(SiswaBerandaFragment())
                     true
                 }
                 R.id.nav_jurnal -> {
-                    loadFragment(SiswaJurnalFragment())
+                    loadFragment(SiswaPrasensiFragment())
                     true
                 }
                 R.id.nav_biodata -> {

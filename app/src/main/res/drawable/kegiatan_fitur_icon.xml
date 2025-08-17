@@ -1,0 +1,46 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Papan kayu (latar belakang) -->
+    <path
+        android:fillColor="#8D6E63"
+        android:pathData="M4,3H20C21.1,3 22,3.9 22,5V21C22,22.1 21.1,23 20,23H4C2.9,23 2,22.1 2,21V5C2,3.9 2.9,3 4,3Z"/>
+
+    <!-- Kertas putih di atas papan -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M5,6H19C19.55,6 20,6.45 20,7V20C20,20.55 19.55,21 19,21H5C4.45,21 4,20.55 4,20V7C4,6.45 4.45,6 5,6Z"/>
+
+    <!-- Penjepit kertas (atas) -->
+    <path
+        android:fillColor="#5D4037"
+        android:pathData="M9,3H15C15.55,3 16,3.45 16,4V6H8V4C8,3.45 8.45,3 9,3Z"/>
+    <path
+        android:fillColor="#BDBDBD"
+        android:pathData="M10,3.5H14V5.5H10V3.5Z"/>
+
+    <!-- Garis tulisan -->
+    <path
+        android:fillColor="#90A4AE"
+        android:pathData="M6,9H18V10H6V9Z"/>
+    <path
+        android:fillColor="#90A4AE"
+        android:pathData="M6,12H18V13H6V12Z"/>
+    <path
+        android:fillColor="#90A4AE"
+        android:pathData="M6,15H14V16H6V15Z"/>
+
+    <!-- Pulpen di samping kanan bawah -->
+    <path
+        android:fillColor="#1976D2"
+        android:pathData="M16,15l4,4 -1.5,1.5 -4,-4L16,15z"/>
+    <path
+        android:fillColor="#0D47A1"
+        android:pathData="M15,16l4,4 -5,1 1,-5z"/>
+    <path
+        android:fillColor="#FFD54F"
+        android:pathData="M20,19l-1,1 0.5,0.5 1,-1L20,19z"/>
+</vector>
