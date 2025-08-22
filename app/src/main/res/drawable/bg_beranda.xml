@@ -14,7 +14,7 @@
     <!-- Bagian bawah: putih -->
     <item android:top="108dp"> <!-- Mulai putih setelah biru -->
         <shape android:shape="rectangle">
-            <solid android:color="#F2F2F2" />
+            <solid android:color="#F5F5F5" />
             <corners
                 android:topLeftRadius="30dp"
                 android:topRightRadius="30dp"

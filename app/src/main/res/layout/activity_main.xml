@@ -7,19 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".layout_navigasi.SiswaActivity">
 
-    <!-- Header -->
-    <include
-        layout="@layout/nav_header"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_gravity="top" />
-
     <!-- Fragment container -->
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="80dp"
         android:layout_marginBottom="?attr/actionBarSize"
         android:background="@color/white" />
 

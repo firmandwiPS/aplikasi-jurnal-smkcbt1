@@ -3,6 +3,8 @@ package com.example.apk_jurnal_smkcbt1.siswa.beranda
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,6 +44,17 @@ class SiswaBerandaFragment : Fragment() {
     private var ivLaporan: ImageView? = null
     private var ivGaleri: ImageView? = null
 
+    // Handler untuk update jam realtime
+    private val handler = Handler(Looper.getMainLooper())
+    private val timeRunnable = object : Runnable {
+        override fun run() {
+            val currentDate =
+                SimpleDateFormat("EEEE, dd MMMM yyyy, HH:mm:ss", Locale("id")).format(Date())
+            tvDateTime?.text = currentDate
+            handler.postDelayed(this, 1000) // update setiap 1 detik
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -66,10 +79,8 @@ class SiswaBerandaFragment : Fragment() {
         ivLaporan = view.findViewById(R.id.iv_laporan)
         ivGaleri = view.findViewById(R.id.iv_galeri)
 
-        // Set tanggal sekarang
-        val currentDate =
-            SimpleDateFormat("EEEE, dd MMMM yyyy, HH:mm:ss", Locale("id")).format(Date())
-        tvDateTime?.text = currentDate
+        // Mulai update jam berjalan
+        handler.post(timeRunnable)
 
         // Ambil data dari API
         loadStudentData()
@@ -83,7 +94,7 @@ class SiswaBerandaFragment : Fragment() {
 
     private fun openFragment(fragment: Fragment) {
         parentFragmentManager.commit {
-            replace(R.id.fragment_container, fragment) // Pastikan activity ada container ini
+            replace(R.id.fragment_container, fragment)
             addToBackStack(null)
         }
     }
@@ -110,7 +121,7 @@ class SiswaBerandaFragment : Fragment() {
                         tvUserClass?.text =
                             "${jsonObj.getString("kelas")} - ${jsonObj.getString("jurusan")}"
 
-                        // Ambil foto
+                        // Ambil foto profil
                         val fotoUrl = jsonObj.optString("foto_url", "")
                         if (fotoUrl.isNotEmpty()) {
                             Glide.with(requireContext())
@@ -141,6 +152,11 @@ class SiswaBerandaFragment : Fragment() {
         )
 
         Volley.newRequestQueue(requireContext()).add(request)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        handler.removeCallbacks(timeRunnable) // stop jam kalau fragment ditutup
     }
 
     companion object {
